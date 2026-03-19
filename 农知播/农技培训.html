@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>农技培训 - Agricloud 农业云平台</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* 动画效果 */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .scale-in {
+            animation: scaleIn 0.6s ease-out;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* 文字排版 */
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c6b34;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(37, 164, 45, 0.2);
+        }
+        
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #444;
+            margin: 15px 0 10px;
+        }
+        
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+            margin: 10px 0 20px;
+        }
+        
+        .section-content ul {
+            margin: 15px 0 20px 20px;
+        }
+        
+        .section-content ul li {
+            margin: 8px 0;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #666;
+            list-style-type: disc;
+        }
+        
+        .section-content ol {
+            margin: 15px 0 20px 20px;
+        }
+        
+        .section-content ol li {
+            margin: 8px 0;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #666;
+        }
+        
+        /* 统计数据 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(37, 164, 45, 1), rgba(60, 180, 68, 1));
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c6b34;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover .stat-value {
+            transform: scale(1.1);
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        /* 培训列表 */
+        .training-list {
+            margin: 25px 0;
+        }
+        
+        .training-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            border-left: 4px solid rgba(37, 164, 45, 1);
+        }
+        
+        .training-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .course-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2c6b34;
+            font-size: 18px;
+            font-weight: 600;
+            border: 2px dashed rgba(37, 164, 45, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .training-item:hover .course-image {
+            background: linear-gradient(135deg, rgba(37, 164, 45, 0.1), rgba(37, 164, 45, 0.05));
+            border-color: rgba(37, 164, 45, 0.5);
+        }
+        
+        .training-item h4 {
+            color: #2c6b34;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .training-item p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        
+        .course-info {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .course-duration, .course-level {
+            background: #f8f9fa;
+            padding: 4px 12px;
+            border-radius: 15px;
+            border: 1px solid #e9ecef;
+        }
+        
+        /* 培训卡片 */
+        .training-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            border-left: 4px solid rgba(37, 164, 45, 1);
+        }
+        
+        .training-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .training-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c6b34;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .training-content {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .training-content h4 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #333;
+            margin: 15px 0 10px;
+        }
+        
+        .training-content ul {
+            margin: 10px 0 15px 20px;
+        }
+        
+        .training-content li {
+            margin: 6px 0;
+        }
+        
+        .subscribe-btn {
+            background: rgba(37, 164, 45, 1);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(37, 164, 45, 0.3);
+            margin-top: 15px;
+        }
+        
+        .subscribe-btn:hover {
+            background: rgba(29, 128, 35, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 164, 45, 0.4);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 24px;
+            }
+            
+            h3 {
+                font-size: 18px;
+            }
+            
+            h4 {
+                font-size: 16px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-card {
+                padding: 25px;
+            }
+            
+            .stat-value {
+                font-size: 28px;
+            }
+            
+            .training-item {
+                padding: 20px;
+            }
+            
+            .course-image {
+                height: 150px;
+                font-size: 16px;
+            }
+            
+            .course-info {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .training-card {
+                padding: 20px;
+            }
+            
+            .subscribe-btn {
+                width: 100%;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const topButton = document.querySelector('.toolbar-item.top');
+            topButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // 为元素添加动画
+            const elements = document.querySelectorAll('.section-content > *');
+            elements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.1}s`;
+                element.classList.add('fade-in');
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../img/商标png格式.png" alt="Agricloud Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../data-resources.html">数据资源</a></li>
+                    <li><a href="../agriculture-news.html">农业资讯</a></li>
+                    <li><a href="../subscription.html">订阅服务</a></li>
+                    <li><a href="../about.html">关于平台</a></li>
+                    <li><a href="../contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="page-title">
+            <h1>农技培训 <span>AGRICULTURAL TRAINING</span></h1>
+        </div>
+    </section>
+
+    <div class="main-container">
+        <div class="toolbar">
+            <div class="toolbar-item top"></div>
+            <div class="toolbar-item order"></div>
+            <div class="toolbar-item feedback"></div>
+        </div>
+        <main>
+            <div class="container">
+                <h2>农技培训</h2>
+                <p>专业的农业技术培训课程，提升农业生产技能</p>
+                
+                <div class="section-content">
+                    <!-- 培训统计 -->
+                    <h3>培训统计</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">50+</div>
+                            <div class="stat-label">培训课程</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">10,000+</div>
+                            <div class="stat-label">培训人次</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">85%</div>
+                            <div class="stat-label">满意度</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">20+</div>
+                            <div class="stat-label">专家讲师</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 培训课程 -->
+                    <h3>培训课程</h3>
+                    <div class="training-list">
+                        <div class="training-item fade-in">
+                            <div class="course-image">作物栽培技术</div>
+                            <h4>作物栽培技术</h4>
+                            <p>学习主要作物的栽培技术和管理方法，包括播种、施肥、灌溉、收获等全流程管理。</p>
+                            <div class="course-info">
+                                <span class="course-duration">12课时</span>
+                                <span class="course-level">初级</span>
+                            </div>
+                            <button class="subscribe-btn" style="margin-top: 10px;">立即报名</button>
+                        </div>
+                        <div class="training-item fade-in">
+                            <div class="course-image">病虫害防治</div>
+                            <h4>病虫害防治</h4>
+                            <p>掌握作物病虫害识别和防治技术，包括病害诊断、虫害识别、综合防治策略等。</p>
+                            <div class="course-info">
+                                <span class="course-duration">8课时</span>
+                                <span class="course-level">中级</span>
+                            </div>
+                            <button class="subscribe-btn" style="margin-top: 10px;">立即报名</button>
+                        </div>
+                        <div class="training-item fade-in">
+                            <div class="course-image">施肥技术</div>
+                            <h4>施肥技术</h4>
+                            <p>科学施肥方法，提高肥料利用率，包括测土配方施肥、有机肥使用、肥料种类选择等。</p>
+                            <div class="course-info">
+                                <span class="course-duration">6课时</span>
+                                <span class="course-level">初级</span>
+                            </div>
+                            <button class="subscribe-btn" style="margin-top: 10px;">立即报名</button>
+                        </div>
+                        <div class="training-item fade-in">
+                            <div class="course-image">灌溉技术</div>
+                            <h4>灌溉技术</h4>
+                            <p>节水灌溉技术，提高水资源利用效率，包括滴灌、喷灌、微灌等技术的应用。</p>
+                            <div class="course-info">
+                                <span class="course-duration">10课时</span>
+                                <span class="course-level">中级</span>
+                            </div>
+                            <button class="subscribe-btn" style="margin-top: 10px;">立即报名</button>
+                        </div>
+                        <div class="training-item fade-in">
+                            <div class="course-image">智慧农业</div>
+                            <h4>智慧农业技术</h4>
+                            <p>学习物联网、大数据、人工智能等技术在农业中的应用，实现农业生产智能化管理。</p>
+                            <div class="course-info">
+                                <span class="course-duration">15课时</span>
+                                <span class="course-level">高级</span>
+                            </div>
+                            <button class="subscribe-btn" style="margin-top: 10px;">立即报名</button>
+                        </div>
+                        <div class="training-item fade-in">
+                            <div class="course-image">农产品加工</div>
+                            <h4>农产品加工技术</h4>
+                            <p>学习农产品加工技术，提高农产品附加值，包括保鲜、贮藏、加工等技术。</p>
+                            <div class="course-info">
+                                <span class="course-duration">10课时</span>
+                                <span class="course-level">中级</span>
+                            </div>
+                            <button class="subscribe-btn" style="margin-top: 10px;">立即报名</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 培训特色 -->
+                    <h3>培训特色</h3>
+                    <div class="training-card fade-in">
+                        <div class="training-title">培训优势</div>
+                        <div class="training-content">
+                            <ul>
+                                <li><strong>专家授课：</strong>由农业专家亲自授课，确保培训内容的专业性和权威性</li>
+                                <li><strong>实用性强：</strong>课程内容贴近生产实际，解决农民实际生产中的问题</li>
+                                <li><strong>在线学习：</strong>随时随地学习，不受地域限制，灵活安排学习时间</li>
+                                <li><strong>互动教学：</strong>在线互动答疑，及时解决学习过程中的疑问</li>
+                                <li><strong>证书认证：</strong>完成课程可获得培训证书，提升个人专业技能水平</li>
+                                <li><strong>实践指导：</strong>提供实地指导服务，将理论知识与实践相结合</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 培训形式 -->
+                    <h3>培训形式</h3>
+                    <div class="training-card fade-in">
+                        <div class="training-title">培训方式</div>
+                        <div class="training-content">
+                            <h4>线上培训</h4>
+                            <p>通过网络平台进行在线学习，包括视频课程、直播讲座、在线答疑等形式。</p>
+                            
+                            <h4>线下培训</h4>
+                            <p>在各地举办现场培训班，由专家进行实地指导和实践操作培训。</p>
+                            
+                            <h4>混合培训</h4>
+                            <p>结合线上和线下培训的优势，提供更加灵活的培训方式。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 讲师团队 -->
+                    <h3>讲师团队</h3>
+                    <div class="training-card fade-in">
+                        <div class="training-title">专家讲师</div>
+                        <div class="training-content">
+                            <h4>张教授</h4>
+                            <p>中国农业大学教授，作物栽培专家，从事农业教学和研究30余年，出版专著5部，发表论文100余篇。</p>
+                            
+                            <h4>李研究员</h4>
+                            <p>中国农业科学院研究员，病虫害防治专家，长期从事农作物病虫害防治研究，获得多项科研成果。</p>
+                            
+                            <h4>王工程师</h4>
+                            <p>农业机械化研究所高级工程师，灌溉技术专家，在节水灌溉技术领域有丰富的实践经验。</p>
+                            
+                            <h4>陈教授</h4>
+                            <p>南京农业大学教授，土壤肥料专家，在测土配方施肥技术方面有深入研究。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 学员反馈 -->
+                    <h3>学员反馈</h3>
+                    <div class="training-card fade-in">
+                        <div class="training-title">学员评价</div>
+                        <div class="training-content">
+                            <p><strong>张三（种植大户）：</strong>参加了作物栽培技术培训后，我的水稻产量提高了15%，非常感谢专家的指导。</p>
+                            <p><strong>李四（合作社负责人）：</strong>病虫害防治培训非常实用，让我们学会了如何识别和防治常见病虫害，减少了农药使用量。</p>
+                            <p><strong>王五（农业技术员）：</strong>智慧农业技术培训让我了解了最新的农业科技，对我的工作帮助很大。</p>
+                            <p><strong>赵六（农场主）：</strong>施肥技术培训让我学会了科学施肥，不仅提高了产量，还降低了肥料成本。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 报名须知 -->
+                    <h3>报名须知</h3>
+                    <div class="training-card fade-in">
+                        <div class="training-title">报名流程</div>
+                        <div class="training-content">
+                            <ol>
+                                <li>选择您感兴趣的课程</li>
+                                <li>填写报名信息，包括姓名、联系方式、种植类型等</li>
+                                <li>提交报名申请</li>
+                                <li>我们将在24小时内与您联系，确认报名信息</li>
+                                <li>缴纳培训费用（部分公益课程免费）</li>
+                                <li>开始学习课程</li>
+                            </ol>
+                            <p>培训费用：根据课程不同，费用在100-500元之间，部分公益课程免费。</p>
+                            <p>培训证书：完成课程学习并通过考核后，可获得培训结业证书。</p>
+                            <button class="subscribe-btn">立即报名</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 常见问题 -->
+                    <h3>常见问题</h3>
+                    <div class="training-card fade-in">
+                        <div class="training-title">FAQ</div>
+                        <div class="training-content">
+                            <h4>1. 培训课程是否有时间限制？</h4>
+                            <p>线上课程一般有6个月的学习期限，可反复观看学习。</p>
+                            
+                            <h4>2. 如何获得培训证书？</h4>
+                            <p>完成课程学习并通过在线考核后，系统会自动颁发电子证书。</p>
+                            
+                            <h4>3. 是否提供一对一指导？</h4>
+                            <p>是的，我们提供一对一技术指导服务，需额外付费。</p>
+                            
+                            <h4>4. 培训内容是否会定期更新？</h4>
+                            <p>是的，我们会根据农业技术发展和市场需求，定期更新培训内容。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Agricloud 农业云平台. 保留所有权利.</p>
+        </div>
+    </footer>
+</body>
+</html>

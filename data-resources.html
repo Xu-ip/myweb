@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据资源 - Agricloud 农业云平台</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 置顶按钮功能
+            const topButton = document.querySelector('.toolbar-item.top');
+            topButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="img/商标png格式.png" alt="Agricloud Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="data-resources.html" class="active">数据资源</a></li>
+                    <li><a href="agriculture-news.html">农业资讯</a></li>
+                    <li><a href="subscription.html">订阅服务</a></li>
+                    <li><a href="about.html">关于平台</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="page-title">
+            <h1>数据资源 <span>DATA RESOURCES</span></h1>
+        </div>
+    </section>
+
+    <div class="main-container">
+        <div class="toolbar">
+            <div class="toolbar-item top"></div>
+            <div class="toolbar-item order"></div>
+            <div class="toolbar-item feedback"></div>
+        </div>
+        <main>
+            <!-- 数据资源概览 -->
+            <section class="section-overview">
+                <div class="container">
+                    <h2>数据资源概览</h2>
+                    <p>我们提供丰富的农业数据资源，涵盖生产、市场、气象、土壤等多个领域，为农业从业者和研究人员提供全面的数据支持。</p>
+                </div>
+            </section>
+
+            <!-- 数据分类导航 -->
+            <section class="section-categories">
+                <div class="container">
+                    <h2>数据分类</h2>
+                    <div class="categories-grid">
+                        <div class="category-card">
+                            <div class="category-icon"></div>
+                            <h3>农业生产数据</h3>
+                            <p>包含农作物种植面积、产量、投入等生产相关数据</p>
+                            <a href="#" class="category-link">查看详情</a>
+                        </div>
+                        <div class="category-card">
+                            <div class="category-icon"></div>
+                            <h3>农产品市场数据</h3>
+                            <p>包含农产品价格、交易量、市场趋势等数据</p>
+                            <a href="#" class="category-link">查看详情</a>
+                        </div>
+                        <div class="category-card">
+                            <div class="category-icon"></div>
+                            <h3>农业气象数据</h3>
+                            <p>包含温度、降水、光照等气象数据</p>
+                            <a href="#" class="category-link">查看详情</a>
+                        </div>
+                        <div class="category-card">
+                            <div class="category-icon"></div>
+                            <h3>土壤资源数据</h3>
+                            <p>包含土壤类型、养分、pH值等数据</p>
+                            <a href="#" class="category-link">查看详情</a>
+                        </div>
+                        <div class="category-card">
+                            <div class="category-icon"></div>
+                            <h3>农业技术数据</h3>
+                            <p>包含农业技术推广、应用效果等数据</p>
+                            <a href="#" class="category-link">查看详情</a>
+                        </div>
+                        <div class="category-card">
+                            <div class="category-icon"></div>
+                            <h3>农业政策数据</h3>
+                            <p>包含农业政策、补贴、法规等数据</p>
+                            <a href="#" class="category-link">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SPO数据库 -->
+            <section class="section-spo">
+                <div class="container">
+                    <h2>SPO数据库</h2>
+                    <div class="spo-grid">
+                        <div class="spo-card">
+                            <h3>区域速查</h3>
+                            <p>快速查询不同区域的农业数据，支持多维度筛选</p>
+                            <a href="#" class="spo-link">开始查询</a>
+                        </div>
+                        <div class="spo-card">
+                            <h3>数据总览</h3>
+                            <p>查看农业数据的总体情况，包括趋势和分布</p>
+                            <a href="#" class="spo-link">查看总览</a>
+                        </div>
+                        <div class="spo-card">
+                            <h3>入库新增</h3>
+                            <p>浏览最新添加的数据资源，保持数据的时效性</p>
+                            <a href="#" class="spo-link">查看新增</a>
+                        </div>
+                        <div class="spo-card">
+                            <h3>对比分析</h3>
+                            <p>对不同时期、不同区域的数据进行对比分析</p>
+                            <a href="#" class="spo-link">开始分析</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 热门数据下载 -->
+            <section class="section-downloads">
+                <div class="container">
+                    <h2>热门数据下载</h2>
+                    <div class="downloads-list">
+                        <div class="download-item">
+                            <div class="download-rank">1</div>
+                            <div class="download-info">
+                                <h4>2026年全国农产品价格数据</h4>
+                                <p>包含全国主要农产品的价格数据，按月更新</p>
+                                <div class="download-meta">
+                                    <span class="download-size">2.5MB</span>
+                                    <span class="download-count">1,245次下载</span>
+                                </div>
+                            </div>
+                            <a href="#" class="download-btn">下载</a>
+                        </div>
+                        <div class="download-item">
+                            <div class="download-rank">2</div>
+                            <div class="download-info">
+                                <h4>2025年农业生产统计数据</h4>
+                                <p>包含全国农业生产的各项统计数据</p>
+                                <div class="download-meta">
+                                    <span class="download-size">1.8MB</span>
+                                    <span class="download-count">987次下载</span>
+                                </div>
+                            </div>
+                            <a href="#" class="download-btn">下载</a>
+                        </div>
+                        <div class="download-item">
+                            <div class="download-rank">3</div>
+                            <div class="download-info">
+                                <h4>全国土壤养分状况报告</h4>
+                                <p>包含全国土壤养分的详细分析报告</p>
+                                <div class="download-meta">
+                                    <span class="download-size">3.2MB</span>
+                                    <span class="download-count">876次下载</span>
+                                </div>
+                            </div>
+                            <a href="#" class="download-btn">下载</a>
+                        </div>
+                        <div class="download-item">
+                            <div class="download-rank">4</div>
+                            <div class="download-info">
+                                <h4>2026年农业气象预测数据</h4>
+                                <p>包含全年农业气象的预测数据</p>
+                                <div class="download-meta">
+                                    <span class="download-size">1.5MB</span>
+                                    <span class="download-count">754次下载</span>
+                                </div>
+                            </div>
+                            <a href="#" class="download-btn">下载</a>
+                        </div>
+                        <div class="download-item">
+                            <div class="download-rank">5</div>
+                            <div class="download-info">
+                                <h4>农产品质量安全检测数据</h4>
+                                <p>包含农产品质量安全的检测数据</p>
+                                <div class="download-meta">
+                                    <span class="download-size">2.1MB</span>
+                                    <span class="download-count">632次下载</span>
+                                </div>
+                            </div>
+                            <a href="#" class="download-btn">下载</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 数据可视化 -->
+            <section class="section-visualization">
+                <div class="container">
+                    <h2>数据可视化</h2>
+                    <div class="visualization-grid">
+                        <div class="visualization-card">
+                            <h3>产业分析</h3>
+                            <p>通过图表展示农业产业的发展趋势和结构变化</p>
+                            <a href="#" class="visualization-link">查看分析</a>
+                        </div>
+                        <div class="visualization-card">
+                            <h3>趋势预测</h3>
+                            <p>基于历史数据预测未来农业发展趋势</p>
+                            <a href="#" class="visualization-link">查看预测</a>
+                        </div>
+                        <div class="visualization-card">
+                            <h3>区域对比</h3>
+                            <p>对比不同区域的农业发展情况</p>
+                            <a href="#" class="visualization-link">查看对比</a>
+                        </div>
+                        <div class="visualization-card">
+                            <h3>专题地图</h3>
+                            <p>通过地图展示农业数据的空间分布</p>
+                            <a href="#" class="visualization-link">查看地图</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 数据服务 -->
+            <section class="section-services">
+                <div class="container">
+                    <h2>数据服务</h2>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon"></div>
+                            <h3>数据定制</h3>
+                            <p>根据客户需求，提供个性化的数据采集、整理和分析服务</p>
+                            <a href="#" class="service-link">了解更多</a>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon"></div>
+                            <h3>数据API</h3>
+                            <p>提供标准化的数据API接口，方便开发者和企业快速集成</p>
+                            <a href="#" class="service-link">了解更多</a>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon"></div>
+                            <h3>数据分析</h3>
+                            <p>专业的数据分析团队，为客户提供深度的数据挖掘和分析服务</p>
+                            <a href="#" class="service-link">了解更多</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 数据更新 -->
+            <section class="section-updates">
+                <div class="container">
+                    <h2>数据更新</h2>
+                    <div class="updates-list">
+                        <div class="update-item">
+                            <div class="update-date">2026-03-10</div>
+                            <div class="update-content">
+                                <h4>2026年第一季度农产品价格数据已更新</h4>
+                                <p>包含全国主要农产品的第一季度价格数据</p>
+                            </div>
+                        </div>
+                        <div class="update-item">
+                            <div class="update-date">2026-03-05</div>
+                            <div class="update-content">
+                                <h4>全国土壤养分状况数据完成年度更新</h4>
+                                <p>包含最新的全国土壤养分状况数据</p>
+                            </div>
+                        </div>
+                        <div class="update-item">
+                            <div class="update-date">2026-03-01</div>
+                            <div class="update-content">
+                                <h4>新增2025年农业机械购置补贴数据</h4>
+                                <p>包含2025年全国农业机械购置补贴数据</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Agricloud 农业云平台. 保留所有权利.</p>
+        </div>
+    </footer>
+</body>
+</html>

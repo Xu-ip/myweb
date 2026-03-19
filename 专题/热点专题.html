@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>热点专题 - Agricloud 农业云平台</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* 动画效果 */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .scale-in {
+            animation: scaleIn 0.6s ease-out;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* 文字排版 */
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c6b34;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(37, 164, 45, 0.2);
+        }
+        
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #444;
+            margin: 15px 0 10px;
+        }
+        
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+            margin: 10px 0 20px;
+        }
+        
+        ul {
+            margin: 15px 0 20px 20px;
+        }
+        
+        ul li {
+            margin: 8px 0;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #666;
+            list-style-type: disc;
+        }
+        
+        /* 热点卡片 */
+        .hotspot-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            border-left: 4px solid rgba(37, 164, 45, 1);
+        }
+        
+        .hotspot-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .hotspot-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c6b34;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .hotspot-content {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .hotspot-content h4 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #333;
+            margin: 15px 0 10px;
+        }
+        
+        .hotspot-content ul {
+            margin: 10px 0 15px 20px;
+        }
+        
+        .hotspot-content li {
+            margin: 6px 0;
+        }
+        
+        .hotspot-content input[type="email"] {
+            padding: 12px 15px;
+            width: 320px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .hotspot-content input[type="email"]:focus {
+            outline: none;
+            border-color: rgba(37, 164, 45, 1);
+            box-shadow: 0 0 0 3px rgba(37, 164, 45, 0.1);
+        }
+        
+        .hotspot-content input[type="radio"] {
+            margin-right: 8px;
+            transform: scale(1.2);
+        }
+        
+        .hotspot-content label {
+            font-size: 15px;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .hotspot-content label:hover {
+            color: #2c6b34;
+        }
+        
+        .hotspot-content button {
+            background: rgba(37, 164, 45, 1);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(37, 164, 45, 0.3);
+            margin-top: 15px;
+        }
+        
+        .hotspot-content button:hover {
+            background: rgba(29, 128, 35, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 164, 45, 0.4);
+        }
+        
+        /* 热点列表 */
+        .hotspot-list {
+            margin: 25px 0;
+        }
+        
+        .hotspot-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 15px 0;
+            transition: all 0.3s ease;
+            border-left: 4px solid rgba(37, 164, 45, 1);
+        }
+        
+        .hotspot-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .hotspot-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .hotspot-item-title {
+            font-weight: 600;
+            color: #2c6b34;
+            font-size: 18px;
+            flex: 1;
+        }
+        
+        .hotspot-item-date {
+            color: #999;
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 20px;
+        }
+        
+        .hotspot-item-content {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .hotspot-item-content p {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .hotspot-item-content button {
+            background: rgba(37, 164, 45, 1);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(37, 164, 45, 0.3);
+            margin-top: 10px;
+        }
+        
+        .hotspot-item-content button:hover {
+            background: rgba(29, 128, 35, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 164, 45, 0.4);
+        }
+        
+        /* 热门标签 */
+        .hot-tags {
+            margin: 25px 0;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: #f8f9fa;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 8px;
+            font-size: 15px;
+            color: #2c6b34;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+        
+        .tag:hover {
+            background: rgba(37, 164, 45, 1);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(37, 164, 45, 0.3);
+            border-color: rgba(37, 164, 45, 1);
+        }
+        
+        /* 统计数据 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(37, 164, 45, 1), rgba(60, 180, 68, 1));
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c6b34;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover .stat-value {
+            transform: scale(1.1);
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 24px;
+            }
+            
+            h3 {
+                font-size: 18px;
+            }
+            
+            h4 {
+                font-size: 16px;
+            }
+            
+            .hotspot-card {
+                padding: 20px;
+            }
+            
+            .hotspot-item {
+                padding: 20px;
+            }
+            
+            .hotspot-item-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .hotspot-item-date {
+                margin-left: 0;
+            }
+            
+            .hotspot-content input[type="email"] {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .hotspot-content button {
+                width: 100%;
+                margin-left: 0;
+            }
+            
+            .tag {
+                margin: 5px;
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-card {
+                padding: 25px;
+            }
+            
+            .stat-value {
+                font-size: 28px;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const topButton = document.querySelector('.toolbar-item.top');
+            topButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // 为元素添加动画
+            const elements = document.querySelectorAll('.section-content > *');
+            elements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.1}s`;
+                element.classList.add('fade-in');
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../img/商标png格式.png" alt="Agricloud Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../data-resources.html">数据资源</a></li>
+                    <li><a href="../agriculture-news.html">农业资讯</a></li>
+                    <li><a href="../subscription.html">订阅服务</a></li>
+                    <li><a href="../about.html">关于平台</a></li>
+                    <li><a href="../contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="page-title">
+            <h1>热点专题 <span>HOT TOPICS</span></h1>
+        </div>
+    </section>
+
+    <div class="main-container">
+        <div class="toolbar">
+            <div class="toolbar-item top"></div>
+            <div class="toolbar-item order"></div>
+            <div class="toolbar-item feedback"></div>
+        </div>
+        <main>
+            <div class="container">
+                <h2>热点专题</h2>
+                <p>关注农业领域的热点话题和重要事件</p>
+                
+                <div class="section-content">
+                    <!-- 热点统计 -->
+                    <h3>热点统计</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">128</div>
+                            <div class="stat-label">本周热点</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">567</div>
+                            <div class="stat-label">本月热点</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">3,421</div>
+                            <div class="stat-label">年度热点</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">85%</div>
+                            <div class="stat-label">用户关注度</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 热门标签 -->
+                    <h3>热门标签</h3>
+                    <div class="hot-tags fade-in">
+                        <span class="tag">中央一号文件</span>
+                        <span class="tag">人工智能</span>
+                        <span class="tag">智慧农业</span>
+                        <span class="tag">乡村振兴</span>
+                        <span class="tag">农产品价格</span>
+                        <span class="tag">生态农业</span>
+                        <span class="tag">农业技术</span>
+                        <span class="tag">产业升级</span>
+                        <span class="tag">绿色发展</span>
+                        <span class="tag">数字农业</span>
+                    </div>
+                    
+                    <!-- 当前热点 -->
+                    <h3>当前热点</h3>
+                    <div class="hotspot-list">
+                        <div class="hotspot-item fade-in">
+                            <div class="hotspot-item-header">
+                                <div class="hotspot-item-title">2026年中央一号文件解读</div>
+                                <div class="hotspot-item-date">2026-03-10</div>
+                            </div>
+                            <div class="hotspot-item-content">
+                                <p><strong>标签：</strong>政策热点</p>
+                                <p>2026年中央一号文件聚焦农业现代化和乡村振兴，提出了一系列支持农业发展的政策措施。本文深入解读文件内容，分析政策对农业产业的影响。</p>
+                                <button class="subscribe-btn">查看详情</button>
+                            </div>
+                        </div>
+                        <div class="hotspot-item fade-in">
+                            <div class="hotspot-item-header">
+                                <div class="hotspot-item-title">人工智能在农业中的应用</div>
+                                <div class="hotspot-item-date">2026-03-08</div>
+                            </div>
+                            <div class="hotspot-item-content">
+                                <p><strong>标签：</strong>技术热点</p>
+                                <p>人工智能技术在农业领域的应用越来越广泛，从智能种植到精准养殖，AI正在改变传统农业生产方式。本文介绍AI在农业中的最新应用案例。</p>
+                                <button class="subscribe-btn">查看详情</button>
+                            </div>
+                        </div>
+                        <div class="hotspot-item fade-in">
+                            <div class="hotspot-item-header">
+                                <div class="hotspot-item-title">农产品价格走势分析</div>
+                                <div class="hotspot-item-date">2026-03-06</div>
+                            </div>
+                            <div class="hotspot-item-content">
+                                <p><strong>标签：</strong>市场热点</p>
+                                <p>近期农产品价格出现波动，本文分析主要农产品价格走势，预测未来价格变化趋势，为农业生产和投资提供参考。</p>
+                                <button class="subscribe-btn">查看详情</button>
+                            </div>
+                        </div>
+                        <div class="hotspot-item fade-in">
+                            <div class="hotspot-item-header">
+                                <div class="hotspot-item-title">乡村振兴战略实施进展</div>
+                                <div class="hotspot-item-date">2026-03-04</div>
+                            </div>
+                            <div class="hotspot-item-content">
+                                <p><strong>标签：</strong>产业热点</p>
+                                <p>乡村振兴战略实施五年来取得了显著成效，本文总结实施进展，分析存在的问题，并提出下一步发展建议。</p>
+                                <button class="subscribe-btn">查看详情</button>
+                            </div>
+                        </div>
+                        <div class="hotspot-item fade-in">
+                            <div class="hotspot-item-header">
+                                <div class="hotspot-item-title">智慧农业技术发展趋势</div>
+                                <div class="hotspot-item-date">2026-03-02</div>
+                            </div>
+                            <div class="hotspot-item-content">
+                                <p><strong>标签：</strong>技术热点</p>
+                                <p>智慧农业是未来农业发展的方向，本文分析智慧农业技术的最新发展趋势，包括物联网、大数据、区块链等技术在农业中的应用。</p>
+                                <button class="subscribe-btn">查看详情</button>
+                            </div>
+                        </div>
+                        <div class="hotspot-item fade-in">
+                            <div class="hotspot-item-header">
+                                <div class="hotspot-item-title">农业生态环境保护</div>
+                                <div class="hotspot-item-date">2026-02-28</div>
+                            </div>
+                            <div class="hotspot-item-content">
+                                <p><strong>标签：</strong>环境热点</p>
+                                <p>农业生态环境保护是可持续发展的重要内容，本文介绍农业面源污染防治、土壤保护、水资源利用等方面的最新技术和政策。</p>
+                                <button class="subscribe-btn">查看详情</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 热点分析 -->
+                    <h3>热点分析</h3>
+                    <div class="hotspot-card fade-in">
+                        <div class="hotspot-title">2026年农业热点趋势分析</div>
+                        <div class="hotspot-content">
+                            <h4>政策热点</h4>
+                            <p>2026年农业政策将继续聚焦乡村振兴和农业现代化，重点支持农业科技创新、绿色发展和产业升级。中央一号文件的发布将为农业发展提供重要政策支持。</p>
+                            
+                            <h4>技术热点</h4>
+                            <p>人工智能、物联网、大数据等技术在农业中的应用将更加广泛，智慧农业将成为农业发展的重要方向。技术创新将推动农业生产方式的变革。</p>
+                            
+                            <h4>市场热点</h4>
+                            <p>农产品市场将继续保持稳定，部分特色农产品价格可能出现上涨。数字化营销和电商销售将成为农产品销售的重要渠道。</p>
+                            
+                            <h4>产业热点</h4>
+                            <p>农业产业将向规模化、标准化、品牌化方向发展，一二三产业融合将进一步加深，乡村旅游、农产品加工等产业将成为新的增长点。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 专题分类 -->
+                    <h3>专题分类</h3>
+                    <div class="hotspot-card fade-in">
+                        <div class="hotspot-title">热点分类</div>
+                        <div class="hotspot-content">
+                            <ul>
+                                <li><strong>政策热点：</strong>最新农业政策解读和分析，包括中央一号文件、农业补贴政策、乡村振兴政策等</li>
+                                <li><strong>技术热点：</strong>农业技术创新和应用，包括智慧农业、生物技术、新材料等</li>
+                                <li><strong>市场热点：</strong>农产品市场动态和趋势，包括价格走势、供需分析、市场预测等</li>
+                                <li><strong>产业热点：</strong>农业产业发展和变革，包括产业升级、融合发展、新业态等</li>
+                                <li><strong>环境热点：</strong>农业生态环境和可持续发展，包括污染防治、资源利用、生态保护等</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 订阅提醒 -->
+                    <h3>订阅提醒</h3>
+                    <div class="hotspot-card fade-in">
+                        <div class="hotspot-title">订阅热点更新</div>
+                        <div class="hotspot-content">
+                            <p>订阅热点专题更新通知，及时了解农业领域的最新动态。我们将定期推送热点分析、政策解读、技术创新等内容。</p>
+                            <div style="margin-top: 15px;">
+                                <input type="email" placeholder="请输入您的邮箱地址" style="padding: 10px; width: 300px; border: 1px solid #ddd; border-radius: 4px;">
+                                <button class="subscribe-btn" style="margin-left: 10px;">订阅热点更新</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 热点互动 -->
+                    <h3>热点互动</h3>
+                    <div class="hotspot-card fade-in">
+                        <div class="hotspot-title">你最关注的农业热点是什么？</div>
+                        <div class="hotspot-content">
+                            <p>欢迎参与我们的热点投票，告诉我们你最关注的农业热点话题。</p>
+                            <div style="margin-top: 15px;">
+                                <label style="display: block; margin: 10px 0;"><input type="radio" name="hotspot"> 农业政策</label>
+                                <label style="display: block; margin: 10px 0;"><input type="radio" name="hotspot"> 农业技术</label>
+                                <label style="display: block; margin: 10px 0;"><input type="radio" name="hotspot"> 农产品市场</label>
+                                <label style="display: block; margin: 10px 0;"><input type="radio" name="hotspot"> 乡村振兴</label>
+                                <label style="display: block; margin: 10px 0;"><input type="radio" name="hotspot"> 生态农业</label>
+                                <button class="subscribe-btn" style="margin-top: 15px;">提交投票</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Agricloud 农业云平台. 保留所有权利.</p>
+        </div>
+    </footer>
+</body>
+</html>

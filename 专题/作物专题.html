@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作物专题 - Agricloud 农业云平台</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* 动画效果 */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .scale-in {
+            animation: scaleIn 0.6s ease-out;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* 文字排版 */
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c6b34;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(37, 164, 45, 0.2);
+        }
+        
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #444;
+            margin: 15px 0 10px;
+        }
+        
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+            margin: 10px 0 20px;
+        }
+        
+        .section-content ul {
+            margin: 15px 0 20px 20px;
+        }
+        
+        .section-content ul li {
+            margin: 8px 0;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #666;
+            list-style-type: disc;
+        }
+        
+        /* 作物卡片 */
+        .crop-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            border-left: 4px solid rgba(37, 164, 45, 1);
+        }
+        
+        .crop-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .crop-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c6b34;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .crop-content {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .crop-content h4 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #333;
+            margin: 15px 0 10px;
+        }
+        
+        .crop-content ul {
+            margin: 10px 0 15px 20px;
+        }
+        
+        .crop-content li {
+            margin: 6px 0;
+        }
+        
+        .crop-content button {
+            background: rgba(37, 164, 45, 1);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(37, 164, 45, 0.3);
+            margin-top: 15px;
+        }
+        
+        .crop-content button:hover {
+            background: rgba(29, 128, 35, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 164, 45, 0.4);
+        }
+        
+        /* 作物列表 */
+        .crop-list {
+            margin: 25px 0;
+        }
+        
+        .crop-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 15px 0;
+            transition: all 0.3s ease;
+            border-left: 4px solid rgba(37, 164, 45, 1);
+        }
+        
+        .crop-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .crop-item h4 {
+            color: #2c6b34;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .crop-item p {
+            color: #666;
+            line-height: 1.6;
+            margin: 10px 0 15px;
+        }
+        
+        .crop-item button {
+            background: rgba(37, 164, 45, 1);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(37, 164, 45, 0.3);
+            margin-top: 10px;
+        }
+        
+        .crop-item button:hover {
+            background: rgba(29, 128, 35, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 164, 45, 0.4);
+        }
+        
+        /* 统计数据 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(37, 164, 45, 1), rgba(60, 180, 68, 1));
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c6b34;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover .stat-value {
+            transform: scale(1.1);
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        /* 种植技术 */
+        .tech-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin: 15px 0;
+            border: 1px solid #e9ecef;
+        }
+        
+        .tech-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c6b34;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .tech-content {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .tech-content ul {
+            margin: 10px 0 15px 20px;
+        }
+        
+        .tech-content li {
+            margin: 6px 0;
+            font-size: 14px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 24px;
+            }
+            
+            h3 {
+                font-size: 18px;
+            }
+            
+            h4 {
+                font-size: 16px;
+            }
+            
+            .crop-card {
+                padding: 20px;
+            }
+            
+            .crop-item {
+                padding: 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-card {
+                padding: 25px;
+            }
+            
+            .stat-value {
+                font-size: 28px;
+            }
+            
+            .tech-section {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const topButton = document.querySelector('.toolbar-item.top');
+            topButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // 为元素添加动画
+            const elements = document.querySelectorAll('.section-content > *');
+            elements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.1}s`;
+                element.classList.add('fade-in');
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../img/商标png格式.png" alt="Agricloud Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../data-resources.html">数据资源</a></li>
+                    <li><a href="../agriculture-news.html">农业资讯</a></li>
+                    <li><a href="../subscription.html">订阅服务</a></li>
+                    <li><a href="../about.html">关于平台</a></li>
+                    <li><a href="../contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="page-title">
+            <h1>作物专题 <span>CROP TOPIC</span></h1>
+        </div>
+    </section>
+
+    <div class="main-container">
+        <div class="toolbar">
+            <div class="toolbar-item top"></div>
+            <div class="toolbar-item order"></div>
+            <div class="toolbar-item feedback"></div>
+        </div>
+        <main>
+            <div class="container">
+                <h2>作物专题</h2>
+                <p>深入了解各类农作物的种植技术和市场信息</p>
+                
+                <div class="section-content">
+                    <!-- 作物统计 -->
+                    <h3>作物统计</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">6</div>
+                            <div class="stat-label">作物类别</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">120+</div>
+                            <div class="stat-label">主要作物</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">6.8亿吨</div>
+                            <div class="stat-label">粮食产量</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">1.2亿</div>
+                            <div class="stat-label">种植面积</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 作物分类 -->
+                    <h3>作物分类</h3>
+                    <div class="crop-list">
+                        <div class="crop-item fade-in">
+                            <h4>粮食作物</h4>
+                            <p>包括水稻、小麦、玉米、大豆等主要粮食作物，是人类生存的基本食物来源。</p>
+                            <div class="tech-section">
+                                <div class="tech-title">主要品种</div>
+                                <div class="tech-content">
+                                    <ul>
+                                        <li>水稻：籼稻、粳稻、糯稻</li>
+                                        <li>小麦：冬小麦、春小麦</li>
+                                        <li>玉米：普通玉米、糯玉米、甜玉米</li>
+                                        <li>大豆：黄豆、黑豆、青豆</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="crop-item fade-in">
+                            <h4>经济作物</h4>
+                            <p>包括棉花、油料、糖料等经济作物，是工业原料和重要的经济来源。</p>
+                            <div class="tech-section">
+                                <div class="tech-title">主要品种</div>
+                                <div class="tech-content">
+                                    <ul>
+                                        <li>棉花：陆地棉、海岛棉</li>
+                                        <li>油料：油菜、花生、芝麻</li>
+                                        <li>糖料：甘蔗、甜菜</li>
+                                        <li>纤维：麻类、蚕桑</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="crop-item fade-in">
+                            <h4>蔬菜作物</h4>
+                            <p>包括叶菜类、根茎类、茄果类等蔬菜作物，是人类日常饮食的重要组成部分。</p>
+                            <div class="tech-section">
+                                <div class="tech-title">主要品种</div>
+                                <div class="tech-content">
+                                    <ul>
+                                        <li>叶菜类：白菜、菠菜、芹菜</li>
+                                        <li>根茎类：萝卜、土豆、洋葱</li>
+                                        <li>茄果类：番茄、茄子、辣椒</li>
+                                        <li>瓜类：黄瓜、西瓜、南瓜</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="crop-item fade-in">
+                            <h4>水果作物</h4>
+                            <p>包括苹果、柑橘、葡萄等水果作物，富含维生素和矿物质，对人体健康有益。</p>
+                            <div class="tech-section">
+                                <div class="tech-title">主要品种</div>
+                                <div class="tech-content">
+                                    <ul>
+                                        <li>仁果类：苹果、梨、山楂</li>
+                                        <li>核果类：桃、杏、李</li>
+                                        <li>柑橘类：橙子、柚子、柠檬</li>
+                                        <li>浆果类：葡萄、草莓、蓝莓</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="crop-item fade-in">
+                            <h4>茶叶作物</h4>
+                            <p>包括绿茶、红茶、乌龙茶等茶叶作物，是世界三大饮料之一。</p>
+                            <div class="tech-section">
+                                <div class="tech-title">主要品种</div>
+                                <div class="tech-content">
+                                    <ul>
+                                        <li>绿茶：龙井、碧螺春、毛峰</li>
+                                        <li>红茶：祁红、滇红、正山小种</li>
+                                        <li>乌龙茶：铁观音、大红袍、凤凰单丛</li>
+                                        <li>黑茶：普洱、六堡茶</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="crop-item fade-in">
+                            <h4>中药材</h4>
+                            <p>包括人参、黄芪、当归等中药材作物，是传统中医药的重要原料。</p>
+                            <div class="tech-section">
+                                <div class="tech-title">主要品种</div>
+                                <div class="tech-content">
+                                    <ul>
+                                        <li>根类：人参、黄芪、当归</li>
+                                        <li>茎类：麻黄、桂枝、忍冬藤</li>
+                                        <li>叶类：桑叶、艾叶、薄荷</li>
+                                        <li>花类：菊花、金银花、红花</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 种植技术 -->
+                    <h3>种植技术</h3>
+                    <div class="crop-card fade-in">
+                        <div class="crop-title">作物种植技术指南</div>
+                        <div class="crop-content">
+                            <h4>品种选择</h4>
+                            <p>根据气候条件、土壤类型、市场需求等因素选择适宜的作物品种。选择抗病性强、产量高、品质好的优良品种。</p>
+                            
+                            <h4>播种技术</h4>
+                            <p>科学确定播种时间、播种密度和播种深度，提高出苗率和整齐度。根据作物类型选择合适的播种方式，如直播、育苗移栽等。</p>
+                            
+                            <h4>施肥管理</h4>
+                            <p>根据土壤测试结果和作物需肥规律，合理施肥，提高肥料利用率。采用测土配方施肥技术，减少肥料浪费和环境污染。</p>
+                            
+                            <h4>病虫害防治</h4>
+                            <p>采用综合防治策略，包括农业防治、物理防治、生物防治和化学防治。优先使用绿色防控技术，减少化学农药使用。</p>
+                            
+                            <h4>水分管理</h4>
+                            <p>根据作物需水规律和土壤墒情，合理灌溉，提高水分利用效率。采用滴灌、喷灌等节水灌溉技术。</p>
+                            
+                            <h4>收获技术</h4>
+                            <p>适时收获，保证作物品质。选择合适的收获机械和收获方法，减少收获损失。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 市场信息 -->
+                    <h3>市场信息</h3>
+                    <div class="crop-card fade-in">
+                        <div class="crop-title">作物市场分析</div>
+                        <div class="crop-content">
+                            <h4>主要作物价格走势</h4>
+                            <p>监测主要作物的价格变化趋势，分析价格波动原因，为农民种植决策提供参考。</p>
+                            
+                            <h4>作物供需分析</h4>
+                            <p>分析作物的供需状况，预测市场需求变化，指导农民合理安排种植结构。</p>
+                            
+                            <h4>作物种植面积统计</h4>
+                            <p>统计各地区主要作物的种植面积，分析种植结构变化趋势。</p>
+                            
+                            <h4>作物产量预测</h4>
+                            <p>基于气象条件、种植面积、种植技术等因素，预测作物产量，为市场供应提供参考。</p>
+                            
+                            <h4>市场趋势预测</h4>
+                            <p>分析作物市场的长期趋势，预测未来市场变化，为农业投资和政策制定提供依据。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 品种推荐 -->
+                    <h3>品种推荐</h3>
+                    <div class="crop-list">
+                        <div class="crop-item fade-in">
+                            <h4>水稻推荐品种</h4>
+                            <p>超级稻系列：产量高、抗病性强、品质好</p>
+                            <button class="subscribe-btn">查看详情</button>
+                        </div>
+                        <div class="crop-item fade-in">
+                            <h4>小麦推荐品种</h4>
+                            <p>优质强筋小麦：适合制作面包、面条等</p>
+                            <button class="subscribe-btn">查看详情</button>
+                        </div>
+                        <div class="crop-item fade-in">
+                            <h4>玉米推荐品种</h4>
+                            <p>高油玉米：含油量高、营养价值高</p>
+                            <button class="subscribe-btn">查看详情</button>
+                        </div>
+                        <div class="crop-item fade-in">
+                            <h4>大豆推荐品种</h4>
+                            <p>高蛋白质大豆：蛋白质含量高、品质好</p>
+                            <button class="subscribe-btn">查看详情</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 技术支持 -->
+                    <h3>技术支持</h3>
+                    <div class="crop-card fade-in">
+                        <div class="crop-title">作物种植技术支持</div>
+                        <div class="crop-content">
+                            <p>我们提供作物种植技术咨询和指导服务，帮助农民解决种植过程中遇到的问题。</p>
+                            <ul>
+                                <li><strong>技术咨询：</strong>提供作物种植技术问题解答</li>
+                                <li><strong>现场指导：</strong>专家实地指导种植技术</li>
+                                <li><strong>技术培训：</strong>举办作物种植技术培训班</li>
+                                <li><strong>品种推荐：</strong>根据当地条件推荐适宜品种</li>
+                                <li><strong>病虫害诊断：</strong>提供病虫害诊断和防治方案</li>
+                            </ul>
+                            <button class="subscribe-btn">获取技术支持</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 种植日历 -->
+                    <h3>种植日历</h3>
+                    <div class="crop-card fade-in">
+                        <div class="crop-title">2026年作物种植日历</div>
+                        <div class="crop-content">
+                            <h4>春季（3-5月）</h4>
+                            <ul>
+                                <li>3月：播种春小麦、春玉米、春大豆</li>
+                                <li>4月：播种棉花、花生、蔬菜</li>
+                                <li>5月：播种水稻、夏玉米、夏大豆</li>
+                            </ul>
+                            
+                            <h4>夏季（6-8月）</h4>
+                            <ul>
+                                <li>6月：管理春播作物，播种晚稻</li>
+                                <li>7月：夏季作物田间管理</li>
+                                <li>8月：收获早稻，管理中稻</li>
+                            </ul>
+                            
+                            <h4>秋季（9-11月）</h4>
+                            <ul>
+                                <li>9月：收获中稻、玉米、大豆</li>
+                                <li>10月：播种冬小麦、油菜</li>
+                                <li>11月：冬季作物田间管理</li>
+                            </ul>
+                            
+                            <h4>冬季（12-2月）</h4>
+                            <ul>
+                                <li>12月：冬季作物管理，农田冬翻</li>
+                                <li>1月：冬季作物越冬管理</li>
+                                <li>2月：准备春耕，种子、肥料准备</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Agricloud 农业云平台. 保留所有权利.</p>
+        </div>
+    </footer>
+</body>
+</html>

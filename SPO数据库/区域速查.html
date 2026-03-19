@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>区域速查 - Agricloud 农业云平台</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* 动画效果 */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .scale-in {
+            animation: scaleIn 0.6s ease-out;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* 文字排版 */
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c6b34;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(37, 164, 45, 0.2);
+        }
+        
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin: 25px 0 15px;
+        }
+        
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+            margin: 10px 0 20px;
+        }
+        
+        .section-content ul {
+            margin: 15px 0 20px 20px;
+        }
+        
+        .section-content ul li {
+            margin: 8px 0;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #666;
+            list-style-type: disc;
+        }
+        
+        /* 表单样式 */
+        .query-form {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 25px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .query-form:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .query-form select {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        
+        .query-form select:focus {
+            outline: none;
+            border-color: rgba(37, 164, 45, 1);
+            box-shadow: 0 0 0 3px rgba(37, 164, 45, 0.1);
+        }
+        
+        .query-form button {
+            background: rgba(37, 164, 45, 1);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(37, 164, 45, 0.3);
+        }
+        
+        .query-form button:hover {
+            background: rgba(29, 128, 35, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 164, 45, 0.4);
+        }
+        
+        /* 结果展示 */
+        .result-section {
+            margin-top: 35px;
+        }
+        
+        .result-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            border-left: 4px solid rgba(37, 164, 45, 1);
+        }
+        
+        .result-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .result-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c6b34;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .result-content {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .result-content p {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        /* 区域地图 */
+        .map-container {
+            margin: 25px 0;
+            height: 450px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .map-container:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .map-placeholder {
+            text-align: center;
+            color: #999;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .map-placeholder h4 {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .map-placeholder p {
+            font-size: 14px;
+            color: #999;
+        }
+        
+        /* 统计数据 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(37, 164, 45, 1), rgba(60, 180, 68, 1));
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c6b34;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover .stat-value {
+            transform: scale(1.1);
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        /* 数据导出 */
+        .export-options {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .export-options button {
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 24px;
+            }
+            
+            h3 {
+                font-size: 18px;
+            }
+            
+            .query-form {
+                padding: 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+            
+            .export-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const topButton = document.querySelector('.toolbar-item.top');
+            topButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // 为元素添加动画
+            const elements = document.querySelectorAll('.section-content > *');
+            elements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.1}s`;
+                element.classList.add('fade-in');
+            });
+            
+            // 模拟查询功能
+            const queryButton = document.querySelector('.query-form button');
+            if (queryButton) {
+                queryButton.addEventListener('click', function() {
+                    const resultSection = document.querySelector('.result-section');
+                    if (resultSection) {
+                        resultSection.style.display = 'block';
+                        resultSection.classList.add('slide-up');
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../img/商标png格式.png" alt="Agricloud Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../data-resources.html">数据资源</a></li>
+                    <li><a href="../agriculture-news.html">农业资讯</a></li>
+                    <li><a href="../subscription.html">订阅服务</a></li>
+                    <li><a href="../about.html">关于平台</a></li>
+                    <li><a href="../contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="page-title">
+            <h1>区域速查 <span>REGIONAL QUERY</span></h1>
+        </div>
+    </section>
+
+    <div class="main-container">
+        <div class="toolbar">
+            <div class="toolbar-item top"></div>
+            <div class="toolbar-item order"></div>
+            <div class="toolbar-item feedback"></div>
+        </div>
+        <main>
+            <div class="container">
+                <h2>区域速查</h2>
+                <p>快速查询不同区域的农业数据，支持多维度筛选</p>
+                
+                <div class="section-content">
+                    <h3>功能介绍</h3>
+                    <p>区域速查功能允许用户快速查询特定区域的农业数据，包括种植面积、产量、气象条件、土壤状况等多维度信息。</p>
+                    
+                    <h3>使用说明</h3>
+                    <ul>
+                        <li>选择查询区域：支持按省、市、县三级进行查询</li>
+                        <li>选择数据类型：可查询生产数据、市场数据、气象数据等</li>
+                        <li>设置时间范围：支持按年度、季度、月度查询</li>
+                        <li>导出数据：支持Excel、CSV等格式导出</li>
+                    </ul>
+                    
+                    <h3>查询区域</h3>
+                    <p>请选择您要查询的区域：</p>
+                    <div class="query-form">
+                        <select>
+                            <option>请选择省份</option>
+                            <option>北京市</option>
+                            <option>天津市</option>
+                            <option>河北省</option>
+                            <option>山西省</option>
+                            <option>内蒙古自治区</option>
+                            <option>辽宁省</option>
+                            <option>吉林省</option>
+                            <option>黑龙江省</option>
+                            <option>上海市</option>
+                            <option>江苏省</option>
+                            <option>浙江省</option>
+                            <option>安徽省</option>
+                            <option>福建省</option>
+                            <option>江西省</option>
+                            <option>山东省</option>
+                            <option>河南省</option>
+                            <option>湖北省</option>
+                            <option>湖南省</option>
+                            <option>广东省</option>
+                            <option>广西壮族自治区</option>
+                            <option>海南省</option>
+                            <option>重庆市</option>
+                            <option>四川省</option>
+                            <option>贵州省</option>
+                            <option>云南省</option>
+                            <option>西藏自治区</option>
+                            <option>陕西省</option>
+                            <option>甘肃省</option>
+                            <option>青海省</option>
+                            <option>宁夏回族自治区</option>
+                            <option>新疆维吾尔自治区</option>
+                        </select>
+                        <button class="search-btn">查询</button>
+                    </div>
+                    
+                    <!-- 区域地图 -->
+                    <h3>区域地图</h3>
+                    <div class="map-container fade-in">
+                        <div class="map-placeholder">
+                            <h4>区域分布地图</h4>
+                            <p>选择区域后将显示详细地图</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 统计数据 -->
+                    <h3>统计数据</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">1.2亿</div>
+                            <div class="stat-label">耕地面积(亩)</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">6.8亿吨</div>
+                            <div class="stat-label">粮食产量</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">3.2亿</div>
+                            <div class="stat-label">农业人口</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">12.5%</div>
+                            <div class="stat-label">农业增长率</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 结果展示 -->
+                    <div class="result-section" style="display: none;">
+                        <h3>查询结果</h3>
+                        <div class="result-card">
+                            <div class="result-title">区域概况</div>
+                            <div class="result-content">
+                                <p><strong>区域名称：</strong>河南省</p>
+                                <p><strong>耕地面积：</strong>1.09亿亩</p>
+                                <p><strong>主要作物：</strong>小麦、玉米、棉花、油料</p>
+                                <p><strong>农业人口：</strong>5600万人</p>
+                                <p><strong>年粮食产量：</strong>6800万吨</p>
+                            </div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-title">气候条件</div>
+                            <div class="result-content">
+                                <p><strong>年平均气温：</strong>14-16℃</p>
+                                <p><strong>年降水量：</strong>600-1200毫米</p>
+                                <p><strong>无霜期：</strong>200-230天</p>
+                                <p><strong>日照时数：</strong>2000-2600小时</p>
+                            </div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-title">土壤状况</div>
+                            <div class="result-content">
+                                <p><strong>土壤类型：</strong>潮土、棕壤、褐土</p>
+                                <p><strong>有机质含量：</strong>1.0-1.5%</p>
+                                <p><strong>pH值：</strong>6.5-7.5</p>
+                                <p><strong>肥力等级：</strong>中等</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 数据导出 -->
+                    <h3>数据导出</h3>
+                    <p>您可以将查询结果导出为以下格式：</p>
+                    <div class="export-options">
+                        <button class="subscribe-btn">导出Excel</button>
+                        <button class="subscribe-btn">导出CSV</button>
+                        <button class="subscribe-btn">导出PDF</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Agricloud 农业云平台. 保留所有权利.</p>
+        </div>
+    </footer>
+</body>
+</html>

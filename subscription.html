@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订阅服务 - Agricloud 农业云平台</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 置顶按钮功能
+            const topButton = document.querySelector('.toolbar-item.top');
+            topButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="img/商标png格式.png" alt="Agricloud Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="data-resources.html">数据资源</a></li>
+                    <li><a href="agriculture-news.html">农业资讯</a></li>
+                    <li><a href="subscription.html" class="active">订阅服务</a></li>
+                    <li><a href="about.html">关于平台</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="page-title">
+            <h1>订阅服务 <span>SUBSCRIPTION SERVICE</span></h1>
+        </div>
+    </section>
+
+    <div class="main-container">
+        <div class="toolbar">
+            <div class="toolbar-item top"></div>
+            <div class="toolbar-item order"></div>
+            <div class="toolbar-item feedback"></div>
+        </div>
+        <main>
+            <!-- 订阅服务概览 -->
+            <section class="section-overview">
+                <div class="container">
+                    <h2>订阅服务概览</h2>
+                    <p>我们提供多种订阅服务方案，满足不同用户的需求，包括数据订阅、资讯订阅、技术服务订阅等，为您的农业生产和决策提供全方位支持。</p>
+                </div>
+            </section>
+
+            <!-- 订阅方案 -->
+            <section class="section-subscription-plans">
+                <div class="container">
+                    <h2>订阅方案</h2>
+                    <div class="plans-grid">
+                        <div class="plan-card">
+                            <div class="plan-header">
+                                <h3>基础版</h3>
+                                <div class="plan-price">
+                                    <span class="price">¥99</span>
+                                    <span class="period">/月</span>
+                                </div>
+                            </div>
+                            <div class="plan-features">
+                                <ul>
+                                    <li><i class="check-icon"></i> 基础数据访问</li>
+                                    <li><i class="check-icon"></i> 每日资讯推送</li>
+                                    <li><i class="check-icon"></i> 基础技术咨询</li>
+                                    <li><i class="check-icon"></i> 月度市场报告</li>
+                                    <li><i class="check-icon"></i> 在线客服支持</li>
+                                </ul>
+                            </div>
+                            <div class="plan-footer">
+                                <a href="#" class="subscribe-btn">立即订阅</a>
+                            </div>
+                        </div>
+                        <div class="plan-card featured">
+                            <div class="plan-header">
+                                <h3>专业版</h3>
+                                <div class="plan-badge">推荐</div>
+                                <div class="plan-price">
+                                    <span class="price">¥299</span>
+                                    <span class="period">/月</span>
+                                </div>
+                            </div>
+                            <div class="plan-features">
+                                <ul>
+                                    <li><i class="check-icon"></i> 全部数据访问</li>
+                                    <li><i class="check-icon"></i> 实时资讯推送</li>
+                                    <li><i class="check-icon"></i> 专业技术咨询</li>
+                                    <li><i class="check-icon"></i> 周度市场报告</li>
+                                    <li><i class="check-icon"></i> 24小时客服支持</li>
+                                    <li><i class="check-icon"></i> 数据分析工具</li>
+                                    <li><i class="check-icon"></i> 行业专家讲座</li>
+                                </ul>
+                            </div>
+                            <div class="plan-footer">
+                                <a href="#" class="subscribe-btn">立即订阅</a>
+                            </div>
+                        </div>
+                        <div class="plan-card">
+                            <div class="plan-header">
+                                <h3>企业版</h3>
+                                <div class="plan-price">
+                                    <span class="price">¥999</span>
+                                    <span class="period">/月</span>
+                                </div>
+                            </div>
+                            <div class="plan-features">
+                                <ul>
+                                    <li><i class="check-icon"></i> 定制化数据服务</li>
+                                    <li><i class="check-icon"></i> 专属资讯推送</li>
+                                    <li><i class="check-icon"></i> 一对一技术顾问</li>
+                                    <li><i class="check-icon"></i> 定制化市场报告</li>
+                                    <li><i class="check-icon"></i> 7×24小时客服支持</li>
+                                    <li><i class="check-icon"></i> 高级数据分析工具</li>
+                                    <li><i class="check-icon"></i> 专属行业专家指导</li>
+                                    <li><i class="check-icon"></i> 定制化解决方案</li>
+                                </ul>
+                            </div>
+                            <div class="plan-footer">
+                                <a href="#" class="subscribe-btn">立即订阅</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 服务内容 -->
+            <section class="section-service-content">
+                <div class="container">
+                    <h2>服务内容</h2>
+                    <div class="service-content-grid">
+                        <div class="service-content-card">
+                            <div class="service-icon"></div>
+                            <h3>数据订阅</h3>
+                            <p>提供全面的农业数据资源，包括生产数据、市场数据、气象数据等，支持数据下载和API调用。</p>
+                            <ul class="service-details">
+                                <li>农业生产数据</li>
+                                <li>农产品市场数据</li>
+                                <li>气象数据</li>
+                                <li>土壤数据</li>
+                                <li>病虫害数据</li>
+                            </ul>
+                        </div>
+                        <div class="service-content-card">
+                            <div class="service-icon"></div>
+                            <h3>资讯订阅</h3>
+                            <p>提供最新的农业资讯，包括行业动态、政策法规、技术创新、市场分析等，支持个性化推送。</p>
+                            <ul class="service-details">
+                                <li>行业动态</li>
+                                <li>政策法规</li>
+                                <li>技术创新</li>
+                                <li>市场分析</li>
+                                <li>国际资讯</li>
+                            </ul>
+                        </div>
+                        <div class="service-content-card">
+                            <div class="service-icon"></div>
+                            <h3>技术服务</h3>
+                            <p>提供专业的农业技术服务，包括技术咨询、问题诊断、方案设计等，支持线上和线下服务。</p>
+                            <ul class="service-details">
+                                <li>技术咨询</li>
+                                <li>问题诊断</li>
+                                <li>方案设计</li>
+                                <li>技术培训</li>
+                                <li>现场指导</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 订阅流程 -->
+            <section class="section-subscription-process">
+                <div class="container">
+                    <h2>订阅流程</h2>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <h3>选择方案</h3>
+                            <p>根据您的需求选择合适的订阅方案</p>
+                        </div>
+                        <div class="process-arrow"></div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <h3>填写信息</h3>
+                            <p>填写订阅信息和联系方式</p>
+                        </div>
+                        <div class="process-arrow"></div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <h3>支付费用</h3>
+                            <p>选择支付方式并完成支付</p>
+                        </div>
+                        <div class="process-arrow"></div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <h3>开始使用</h3>
+                            <p>激活账户并开始使用订阅服务</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 常见问题 -->
+            <section class="section-faq">
+                <div class="container">
+                    <h2>常见问题</h2>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>如何选择适合我的订阅方案？</h3>
+                                <div class="faq-toggle"></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>您可以根据您的需求和预算选择适合的订阅方案。基础版适合个人用户和小型农场，专业版适合中型农业企业，企业版适合大型农业企业和机构。如果您不确定，可以联系我们的客服人员获取建议。</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>订阅后可以随时取消吗？</h3>
+                                <div class="faq-toggle"></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>是的，您可以随时取消订阅。取消订阅后，您的服务将在当前计费周期结束后停止。我们不会收取任何取消费用。</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>如何获取技术支持？</h3>
+                                <div class="faq-toggle"></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>订阅用户可以通过在线客服、电话、邮件等方式获取技术支持。不同订阅方案的技术支持级别不同，专业版和企业版用户可以获得更高级别的技术支持。</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>数据更新频率是多少？</h3>
+                                <div class="faq-toggle"></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>我们的数据更新频率根据数据类型不同而不同。市场数据每日更新，气象数据实时更新，生产数据定期更新。具体更新频率可以在订阅方案详情中查看。</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>可以开具发票吗？</h3>
+                                <div class="faq-toggle"></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>是的，我们可以为订阅用户开具增值税发票。您可以在订阅后通过账户管理页面申请发票，我们会在1-3个工作日内处理您的申请。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 客户评价 -->
+            <section class="section-testimonials">
+                <div class="container">
+                    <h2>客户评价</h2>
+                    <div class="testimonials-grid">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"订阅了专业版服务后，我们获得了全面的农业数据和市场分析，这对我们的生产决策非常有帮助。客服响应及时，技术支持专业，值得推荐！"</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar"></div>
+                                <div class="author-info">
+                                    <h4>王农场主</h4>
+                                    <p>某大型农场</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"企业版服务为我们提供了定制化的解决方案，帮助我们优化了生产流程，提高了效率。专属技术顾问的指导非常专业，解决了我们很多实际问题。"</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar"></div>
+                                <div class="author-info">
+                                    <h4>李经理</h4>
+                                    <p>某农业科技公司</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"基础版服务性价比很高，提供的资讯和数据对我个人的农业生产很有参考价值。界面友好，使用方便，是一个不错的平台。"</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar"></div>
+                                <div class="author-info">
+                                    <h4>张农户</h4>
+                                    <p>个体农户</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Agricloud 农业云平台. 保留所有权利.</p>
+        </div>
+    </footer>
+</body>
+</html>

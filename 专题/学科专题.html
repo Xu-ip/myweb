@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学科专题 - Agricloud 农业云平台</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* 动画效果 */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .scale-in {
+            animation: scaleIn 0.6s ease-out;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* 文字排版 */
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c6b34;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(37, 164, 45, 0.2);
+        }
+        
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #444;
+            margin: 15px 0 10px;
+        }
+        
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+            margin: 10px 0 20px;
+        }
+        
+        .section-content ul {
+            margin: 15px 0 20px 20px;
+        }
+        
+        .section-content ul li {
+            margin: 8px 0;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #666;
+            list-style-type: disc;
+        }
+        
+        /* 学科卡片 */
+        .subject-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            border-left: 4px solid rgba(37, 164, 45, 1);
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .subject-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c6b34;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .subject-content {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .subject-content h4 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #333;
+            margin: 15px 0 10px;
+        }
+        
+        .subject-content ul {
+            margin: 10px 0 15px 20px;
+        }
+        
+        .subject-content li {
+            margin: 6px 0;
+        }
+        
+        .subject-content button {
+            background: rgba(37, 164, 45, 1);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(37, 164, 45, 0.3);
+            margin-top: 15px;
+        }
+        
+        .subject-content button:hover {
+            background: rgba(29, 128, 35, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 164, 45, 0.4);
+        }
+        
+        /* 学科列表 */
+        .subject-list {
+            margin: 25px 0;
+        }
+        
+        .subject-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 15px 0;
+            transition: all 0.3s ease;
+            border-left: 4px solid rgba(37, 164, 45, 1);
+        }
+        
+        .subject-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .subject-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .subject-item-title {
+            font-weight: 600;
+            color: #2c6b34;
+            font-size: 18px;
+            flex: 1;
+        }
+        
+        .subject-item-level {
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 500;
+            background: #e8f5e8;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+            transition: all 0.3s ease;
+        }
+        
+        .subject-item-level:hover {
+            transform: scale(1.05);
+        }
+        
+        .subject-item-content {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .subject-item-content p {
+            margin: 10px 0 15px;
+            font-size: 15px;
+        }
+        
+        /* 统计数据 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(37, 164, 45, 1), rgba(60, 180, 68, 1));
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c6b34;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover .stat-value {
+            transform: scale(1.1);
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        /* 研究方向 */
+        .research-direction {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin: 10px 0;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            border-left: 3px solid rgba(37, 164, 45, 1);
+        }
+        
+        .research-direction:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .direction-title {
+            font-weight: 600;
+            color: #2c6b34;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        
+        .direction-content {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 24px;
+            }
+            
+            h3 {
+                font-size: 18px;
+            }
+            
+            h4 {
+                font-size: 16px;
+            }
+            
+            .subject-card {
+                padding: 20px;
+            }
+            
+            .subject-item {
+                padding: 20px;
+            }
+            
+            .subject-item-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-card {
+                padding: 25px;
+            }
+            
+            .stat-value {
+                font-size: 28px;
+            }
+            
+            .research-direction {
+                padding: 12px;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const topButton = document.querySelector('.toolbar-item.top');
+            topButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // 为元素添加动画
+            const elements = document.querySelectorAll('.section-content > *');
+            elements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.1}s`;
+                element.classList.add('fade-in');
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../img/商标png格式.png" alt="Agricloud Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../data-resources.html">数据资源</a></li>
+                    <li><a href="../agriculture-news.html">农业资讯</a></li>
+                    <li><a href="../subscription.html">订阅服务</a></li>
+                    <li><a href="../about.html">关于平台</a></li>
+                    <li><a href="../contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="page-title">
+            <h1>学科专题 <span>ACADEMIC TOPIC</span></h1>
+        </div>
+    </section>
+
+    <div class="main-container">
+        <div class="toolbar">
+            <div class="toolbar-item top"></div>
+            <div class="toolbar-item order"></div>
+            <div class="toolbar-item feedback"></div>
+        </div>
+        <main>
+            <div class="container">
+                <h2>学科专题</h2>
+                <p>农业学科领域的专业知识和研究成果</p>
+                
+                <div class="section-content">
+                    <!-- 学科统计 -->
+                    <h3>学科统计</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">6</div>
+                            <div class="stat-label">核心学科</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">50+</div>
+                            <div class="stat-label">研究方向</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">1,200+</div>
+                            <div class="stat-label">学术论文</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">85</div>
+                            <div class="stat-label">专家学者</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 学科分类 -->
+                    <h3>学科分类</h3>
+                    <div class="subject-list">
+                        <div class="subject-item fade-in">
+                            <div class="subject-item-header">
+                                <div class="subject-item-title">农学</div>
+                                <div class="subject-item-level">核心学科</div>
+                            </div>
+                            <div class="subject-item-content">
+                                <p>作物栽培、育种、病虫害防治等农学基础知识，是农业科学的核心学科。</p>
+                                <h4>主要研究方向：</h4>
+                                <div class="research-direction">
+                                    <div class="direction-title">作物栽培学</div>
+                                    <div class="direction-content">研究作物生长发育规律和高产优质栽培技术</div>
+                                </div>
+                                <div class="research-direction">
+                                    <div class="direction-title">作物育种学</div>
+                                    <div class="direction-content">研究作物新品种选育理论和方法</div>
+                                </div>
+                                <div class="research-direction">
+                                    <div class="direction-title">作物生理学</div>
+                                    <div class="direction-content">研究作物生理代谢和环境适应机制</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subject-item fade-in">
+                            <div class="subject-item-header">
+                                <div class="subject-item-title">园艺学</div>
+                                <div class="subject-item-level">核心学科</div>
+                            </div>
+                            <div class="subject-item-content">
+                                <p>蔬菜、水果、花卉等园艺作物种植技术，是农业科学的重要分支。</p>
+                                <h4>主要研究方向：</h4>
+                                <div class="research-direction">
+                                    <div class="direction-title">蔬菜学</div>
+                                    <div class="direction-content">研究蔬菜栽培技术和品种选育</div>
+                                </div>
+                                <div class="research-direction">
+                                    <div class="direction-title">果树学</div>
+                                    <div class="direction-content">研究果树栽培技术和品种选育</div>
+                                </div>
+                                <div class="research-direction">
+                                    <div class="direction-title">观赏园艺</div>
+                                    <div class="direction-content">研究花卉和观赏植物栽培技术</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subject-item fade-in">
+                            <div class="subject-item-header">
+                                <div class="subject-item-title">植物保护</div>
+                                <div class="subject-item-level">核心学科</div>
+                            </div>
+                            <div class="subject-item-content">
+                                <p>植物病虫害诊断、防治和综合管理技术，保障农业生产安全。</p>
+                                <h4>主要研究方向：</h4>
+                                <div class="research-direction">
+                                    <div class="direction-title">植物病理学</div>
+                                    <div class="direction-content">研究植物病害发生规律和防治技术</div>
+                                </div>
+                                <div class="research-direction">
+                                    <div class="direction-title">昆虫学</div>
+                                    <div class="direction-content">研究害虫发生规律和防治技术</div>
+                                </div>
+                                <div class="research-direction">
+                                    <div class="direction-title">农药学</div>
+                                    <div class="direction-content">研究农药使用技术和安全管理</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subject-item fade-in">
+                            <div class="subject-item-header">
+                                <div class="subject-item-title">土壤学</div>
+                                <div class="subject-item-level">核心学科</div>
+                            </div>
+                            <div class="subject-item-content">
+                                <p>土壤理化性质、肥力提升和改良技术，是农业生产的基础。</p>
+                                <h4>主要研究方向：</h4>
+                                <div class="research-direction">
+                                    <div class="direction-title">土壤物理学</div>
+                                    <div class="direction-content">研究土壤物理性质和水分运动</div>
+                                </div>
+                                <div class="research-direction">
+                                    <div class="direction-title">土壤化学</div>
+                                    <div class="direction-content">研究土壤化学性质和养分循环</div>
+                                </div>
+                                <div class="research-direction">
+                                    <div class="direction-title">土壤生物学</div>
+                                    <div class="direction-content">研究土壤微生物和生物多样性</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subject-item fade-in">
+                            <div class="subject-item-header">
+                                <div class="subject-item-title">农业气象学</div>
+                                <div class="subject-item-level">重要学科</div>
+                            </div>
+                            <div class="subject-item-content">
+                                <p>气象条件对农业生产的影响和应对措施，为农业生产提供气象服务。</p>
+                                <h4>主要研究方向：</h4>
+                                <div class="research-direction">
+                                    <div class="direction-title">农业气候学</div>
+                                    <div class="direction-content">研究气候对农业生产的影响</div>
+                                </div>
+                                <div class="research-direction">
+                                    <div class="direction-title">农业气象灾害</div>
+                                    <div class="direction-content">研究气象灾害对农业的影响和防御</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subject-item fade-in">
+                            <div class="subject-item-header">
+                                <div class="subject-item-title">农业工程</div>
+                                <div class="subject-item-level">重要学科</div>
+                            </div>
+                            <div class="subject-item-content">
+                                <p>农业机械化、自动化和智能化技术，提高农业生产效率。</p>
+                                <h4>主要研究方向：</h4>
+                                <div class="research-direction">
+                                    <div class="direction-title">农业机械学</div>
+                                    <div class="direction-content">研究农业机械设计和应用</div>
+                                </div>
+                                <div class="research-direction">
+                                    <div class="direction-title">农业自动化</div>
+                                    <div class="direction-content">研究农业生产自动化技术</div>
+                                </div>
+                                <div class="research-direction">
+                                    <div class="direction-title">农业信息化</div>
+                                    <div class="direction-content">研究信息技术在农业中的应用</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 研究热点 -->
+                    <h3>研究热点</h3>
+                    <div class="subject-card fade-in">
+                        <div class="subject-title">农业学科研究热点</div>
+                        <div class="subject-content">
+                            <h4>精准农业技术</h4>
+                            <p>利用GPS、遥感、地理信息系统等技术实现农田精准管理，提高资源利用效率和作物产量。研究内容包括精准施肥、精准灌溉、精准播种等技术。</p>
+                            
+                            <h4>智慧农业</h4>
+                            <p>物联网、大数据、人工智能等技术在农业中的应用，实现农业生产的智能化管理。研究内容包括智能监测、智能决策、智能控制等技术。</p>
+                            
+                            <h4>绿色农业</h4>
+                            <p>生态友好型农业生产方式，减少化学投入品使用，保护生态环境。研究内容包括绿色防控、有机农业、循环农业等技术。</p>
+                            
+                            <h4>分子育种</h4>
+                            <p>利用生物技术和分子标记辅助选择技术培育作物新品种，提高作物产量和品质。研究内容包括基因编辑、分子标记开发、品种选育等技术。</p>
+                            
+                            <h4>农业信息化</h4>
+                            <p>信息技术在农业中的深度应用，包括农业大数据分析、农产品溯源、电子商务等。研究内容包括数据采集、数据挖掘、信息服务等技术。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 学术资源 -->
+                    <h3>学术资源</h3>
+                    <div class="subject-card fade-in">
+                        <div class="subject-title">学术资源平台</div>
+                        <div class="subject-content">
+                            <ul>
+                                <li><strong>农业学术论文数据库：</strong>收录国内外农业领域的学术论文，提供全文检索和下载服务</li>
+                                <li><strong>农业技术标准规范：</strong>提供农业相关的国家标准、行业标准和地方标准</li>
+                                <li><strong>农业科研成果库：</strong>展示农业科研项目成果，包括专利、品种、技术等</li>
+                                <li><strong>农业专家智库：</strong>汇聚农业领域专家学者，提供咨询和技术服务</li>
+                                <li><strong>农业学术期刊：</strong>订阅国内外重要农业学术期刊，提供在线阅读服务</li>
+                                <li><strong>农业会议信息：</strong>发布农业领域学术会议信息，提供会议报名和论文提交服务</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 学科前沿 -->
+                    <h3>学科前沿</h3>
+                    <div class="subject-list">
+                        <div class="subject-item fade-in">
+                            <div class="subject-item-header">
+                                <div class="subject-item-title">基因编辑技术在作物育种中的应用</div>
+                                <div class="subject-item-level">前沿技术</div>
+                            </div>
+                            <div class="subject-item-content">
+                                <p>CRISPR-Cas9等基因编辑技术在作物育种中的应用，为培育高产、优质、抗逆的作物新品种提供了新途径。</p>
+                            </div>
+                        </div>
+                        <div class="subject-item fade-in">
+                            <div class="subject-item-header">
+                                <div class="subject-item-title">人工智能在农业中的应用</div>
+                                <div class="subject-item-level">前沿技术</div>
+                            </div>
+                            <div class="subject-item-content">
+                                <p>机器学习、计算机视觉等人工智能技术在作物识别、病虫害诊断、产量预测等方面的应用，提高农业生产的智能化水平。</p>
+                            </div>
+                        </div>
+                        <div class="subject-item fade-in">
+                            <div class="subject-item-header">
+                                <div class="subject-item-title">区块链技术在农产品溯源中的应用</div>
+                                <div class="subject-item-level">前沿技术</div>
+                            </div>
+                            <div class="subject-item-content">
+                                <p>区块链技术在农产品溯源中的应用，实现农产品从生产到销售的全流程追溯，提高农产品质量安全水平。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 学术交流 -->
+                    <h3>学术交流</h3>
+                    <div class="subject-card fade-in">
+                        <div class="subject-title">学术交流平台</div>
+                        <div class="subject-content">
+                            <p>为促进农业学科的学术交流和合作，我们提供以下学术交流平台：</p>
+                            <ul>
+                                <li><strong>学术研讨会：</strong>定期举办农业学科前沿研讨会，邀请国内外专家学者进行学术交流</li>
+                                <li><strong>学术讲座：</strong>邀请知名专家学者开展学术讲座，分享最新研究成果</li>
+                                <li><strong>学术论坛：</strong>建立在线学术论坛，为学者提供交流和讨论的平台</li>
+                                <li><strong>合作研究：</strong>促进高校、科研机构和企业之间的合作研究</li>
+                            </ul>
+                            <button class="subscribe-btn">加入学术交流</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Agricloud 农业云平台. 保留所有权利.</p>
+        </div>
+    </footer>
+</body>
+</html>

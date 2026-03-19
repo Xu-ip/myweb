@@ -1,0 +1,436 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Alibaba PuHuiTi", "Source Han Sans CN", Arial, sans-serif;
+    color: #333;
+    overflow: auto;
+    background-color: #f8f8f8;
+    min-width: 1200px;
+}
+
+/* 主容器样式 */
+.main-container {
+    width: 100%;
+    max-width: 1920px;
+    position: relative;
+    margin: 0 auto;
+    padding: 0px;
+    background: #f8f8f8;
+}
+
+/* 头部样式 */
+header {
+    width: 100%;
+    max-width: 1920px;
+    height: 90px;
+    position: relative;
+    margin: 0 auto;
+    border-radius: 0px;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    font-family: "Alibaba PuHuiTi 2.0";
+    transition: box-shadow 0.3s ease;
+    z-index: 100;
+}
+
+header:hover {
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+header .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 210px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover img {
+    transform: scale(1.05);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap: 70px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-family: "Alibaba PuHuiTi 2.0";
+    font-size: 17px;
+    font-weight: 500;
+    color: #333333;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 8px 0;
+}
+
+nav ul li a:hover {
+    color: rgba(37, 164, 45, 1);
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: rgba(37, 164, 45, 1);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* 联系我们链接样式 */
+nav ul li:last-child a {
+    border-left: 2px solid #e0e0e0;
+    padding-left: 70px;
+}
+
+nav ul li:last-child a:hover {
+    border-left-color: rgba(37, 164, 45, 0.5);
+}
+
+/* 英雄区样式 */
+.hero {
+    width: 100%;
+    max-width: 1920px;
+    height: 300px;
+    position: relative;
+    margin: 0 auto;
+    background-image: url('../img/图片1.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* 内容区域样式 */
+main {
+    width: 100%;
+    max-width: 1920px;
+    position: relative;
+    left: 0px;
+    top: 30px;
+    height: auto;
+    margin: 0 auto;
+    padding-bottom: 50px;
+    display: flex;
+    gap: 30px;
+    padding: 0 5%;
+}
+
+.report-content {
+    flex: 3;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.report-sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar-section {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.sidebar-section {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.sidebar-section h3 {
+    color: #2c6b34;
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+.related-reports,
+.report-categories {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.related-reports li,
+.report-categories li {
+    margin-bottom: 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.related-reports li:hover,
+.report-categories li:hover {
+    background-color: #f8f9fa;
+}
+
+.related-reports a,
+.report-categories a {
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: block;
+    padding: 8px 10px;
+    border-radius: 4px;
+    text-align: left;
+}
+
+.related-reports a:hover,
+.report-categories a:hover {
+    color: #2c6b34;
+    padding-left: 15px;
+    background-color: #f0f8f0;
+}
+
+/* 报告头部样式 */
+.report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.report-meta span {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+    font-size: 14px;
+}
+
+.report-share {
+    display: flex;
+    gap: 10px;
+}
+
+.share-btn,
+.download-btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.share-btn {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.download-btn {
+    background-color: #2c6b34;
+    color: white;
+}
+
+.share-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.download-btn:hover {
+    background-color: rgba(37, 164, 45, 1);
+}
+
+/* 报告正文样式 */
+.report-body h2 {
+    color: #2c6b34;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.report-body h3 {
+    color: #333;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.report-body p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: justify;
+    color: #444;
+}
+
+.report-body ul,
+.report-body ol {
+    margin-bottom: 20px;
+    padding-left: 30px;
+}
+
+.report-body li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    color: #444;
+}
+
+.report-body ul li {
+    list-style-type: disc;
+}
+
+.report-body ol li {
+    list-style-type: decimal;
+}
+
+/* 页脚样式 */
+footer {
+    width: 100%;
+    max-width: 1920px;
+    margin: 50px auto 0;
+    padding: 30px 0;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+.footer-content p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    main {
+        flex-direction: column;
+    }
+    
+    .report-sidebar {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .sidebar-section {
+        flex: 1;
+        min-width: 250px;
+    }
+}
+
+/* 右侧工具栏样式 */
+.toolbar {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1000;
+}
+
+.toolbar-item {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.toolbar-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    background-color: #f8f9fa;
+}
+
+/* 工具栏图标样式 */
+.toolbar-item.top {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>');
+    background-size: 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.toolbar-item.order {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-4V4c0-1.1-.9-2-2-2h-4a2 2 0 0 0-2 2v3H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path><polyline points="16 17 12 13 8 17"></polyline></svg>');
+    background-size: 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.toolbar-item.feedback {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>');
+    background-size: 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+}

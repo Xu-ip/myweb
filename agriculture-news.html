@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>农业资讯 - Agricloud 农业云平台</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 置顶按钮功能
+            const topButton = document.querySelector('.toolbar-item.top');
+            topButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="img/商标png格式.png" alt="Agricloud Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="data-resources.html">数据资源</a></li>
+                    <li><a href="agriculture-news.html" class="active">农业资讯</a></li>
+                    <li><a href="subscription.html">订阅服务</a></li>
+                    <li><a href="about.html">关于平台</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="page-title">
+            <h1>农业资讯 <span>AGRICULTURE NEWS</span></h1>
+        </div>
+    </section>
+
+    <div class="main-container">
+        <div class="toolbar">
+            <div class="toolbar-item top"></div>
+            <div class="toolbar-item order"></div>
+            <div class="toolbar-item feedback"></div>
+        </div>
+        <main>
+            <!-- 资讯概览 -->
+            <section class="section-overview">
+                <div class="container">
+                    <h2>农业资讯概览</h2>
+                    <p>我们提供最新、最全面的农业资讯，涵盖行业动态、政策法规、技术创新、市场分析等多个领域，为您的农业生产和决策提供参考。</p>
+                </div>
+            </section>
+
+            <!-- 热门资讯 -->
+            <section class="section-featured-news">
+                <div class="container">
+                    <h2>热门资讯</h2>
+                    <div class="featured-news-grid">
+                        <div class="featured-news-card">
+                            <div class="news-image"></div>
+                            <div class="news-content">
+                                <div class="news-category">行业动态</div>
+                                <h3>农业农村部发布2026年农业产业发展规划</h3>
+                                <p>近日，农业农村部正式发布2026年农业产业发展规划，明确了未来一年农业发展的重点方向和目标任务。</p>
+                                <div class="news-meta">
+                                    <span class="news-date">2026-03-10</span>
+                                    <span class="news-views">1,245次阅读</span>
+                                </div>
+                                <a href="#" class="news-link">阅读全文</a>
+                            </div>
+                        </div>
+                        <div class="featured-news-card">
+                            <div class="news-image"></div>
+                            <div class="news-content">
+                                <div class="news-category">技术创新</div>
+                                <h3>人工智能在农业领域的应用与发展</h3>
+                                <p>人工智能技术正在深刻改变农业生产方式，从智能灌溉到病虫害识别，AI为农业带来了前所未有的变革。</p>
+                                <div class="news-meta">
+                                    <span class="news-date">2026-03-08</span>
+                                    <span class="news-views">987次阅读</span>
+                                </div>
+                                <a href="#" class="news-link">阅读全文</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 资讯分类 -->
+            <section class="section-news-categories">
+                <div class="container">
+                    <h2>资讯分类</h2>
+                    <div class="news-categories-grid">
+                        <div class="news-category-card">
+                            <h3>行业动态</h3>
+                            <ul class="news-list">
+                                <li>
+                                    <a href="#">
+                                        <span class="news-title">全国春耕生产全面展开，科技助力增产增收</span>
+                                        <span class="news-date">2026-03-05</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="news-title">我省举办2026年农业科技创新成果展</span>
+                                        <span class="news-date">2026-03-01</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="news-title">数字农业试点县建设成效显著</span>
+                                        <span class="news-date">2026-02-28</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="news-title">新型农业经营主体培育工程启动</span>
+                                        <span class="news-date">2026-02-25</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <a href="#" class="category-more">查看更多</a>
+                        </div>
+                        <div class="news-category-card">
+                            <h3>政策法规</h3>
+                            <ul class="news-list">
+                                <li>
+                                    <a href="#">
+                                        <span class="news-title">关于加快推进农业农村现代化的意见</span>
+                                        <span class="news-date">2026-03-03</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="news-title">2026年中央一号文件解读</span>
+                                        <span class="news-date">2026-02-20</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="news-title">农产品质量安全法修订版发布</span>
+                                        <span class="news-date">2026-02-15</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="news-title">关于促进乡村产业振兴的若干措施</span>
+                                        <span class="news-date">2026-02-10</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <a href="#" class="category-more">查看更多</a>
+                        </div>
+                        <div class="news-category-card">
+                            <h3>技术创新</h3>
+                            <ul class="news-list">
+                                <li>
+                                    <a href="#">
+                                        <span class="news-title">智慧农业物联网技术最新进展</span>
+                                        <span class="news-date">2026-03-06</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="news-title">农作物新品种选育取得重大突破</span>
+                                        <span class="news-date">2026-03-02</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="news-title">设施农业智能化管理系统研发成功</span>
+                                        <span class="news-date">2026-02-26</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="news-title">农业大数据分析平台正式上线</span>
+                                        <span class="news-date">2026-02-22</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <a href="#" class="category-more">查看更多</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 市场分析 -->
+            <section class="section-market-analysis">
+                <div class="container">
+                    <h2>市场分析</h2>
+                    <div class="market-analysis-grid">
+                        <div class="market-analysis-card">
+                            <h3>2026年第一季度农产品市场分析</h3>
+                            <p>本报告对2026年第一季度农产品市场进行了全面分析，包括价格走势、供需状况、进出口情况等方面。</p>
+                            <div class="analysis-meta">
+                                <span class="analysis-date">2026-03-07</span>
+                                <span class="analysis-author">农业市场研究中心</span>
+                            </div>
+                            <a href="#" class="analysis-link">阅读报告</a>
+                        </div>
+                        <div class="market-analysis-card">
+                            <h3>主要农产品价格走势预测</h3>
+                            <p>基于历史数据和市场趋势，对未来一段时间主要农产品的价格走势进行了预测分析。</p>
+                            <div class="analysis-meta">
+                                <span class="analysis-date">2026-03-04</span>
+                                <span class="analysis-author">农产品价格监测中心</span>
+                            </div>
+                            <a href="#" class="analysis-link">阅读报告</a>
+                        </div>
+                        <div class="market-analysis-card">
+                            <h3>全球粮食市场动态及影响因素分析</h3>
+                            <p>分析了当前全球粮食市场的最新动态，以及影响粮食价格的主要因素。</p>
+                            <div class="analysis-meta">
+                                <span class="analysis-date">2026-03-01</span>
+                                <span class="analysis-author">国际农业经济研究所</span>
+                            </div>
+                            <a href="#" class="analysis-link">阅读报告</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 国际资讯 -->
+            <section class="section-international-news">
+                <div class="container">
+                    <h2>国际资讯</h2>
+                    <div class="international-news-grid">
+                        <div class="international-news-card">
+                            <div class="news-image"></div>
+                            <h3>全球农业科技创新趋势</h3>
+                            <p>全球农业科技创新正在加速发展，从基因编辑到智能农业，新技术正在重塑农业未来。</p>
+                            <div class="news-meta">
+                                <span class="news-date">2026-03-09</span>
+                            </div>
+                            <a href="#" class="news-link">阅读全文</a>
+                        </div>
+                        <div class="international-news-card">
+                            <div class="news-image"></div>
+                            <h3>国际农产品市场最新动态</h3>
+                            <p>国际农产品市场出现新变化，供需格局调整，价格波动加大。</p>
+                            <div class="news-meta">
+                                <span class="news-date">2026-03-06</span>
+                            </div>
+                            <a href="#" class="news-link">阅读全文</a>
+                        </div>
+                        <div class="international-news-card">
+                            <div class="news-image"></div>
+                            <h3>国外农业现代化发展经验</h3>
+                            <p>总结了发达国家农业现代化的发展经验，为我国农业现代化提供参考。</p>
+                            <div class="news-meta">
+                                <span class="news-date">2026-03-03</span>
+                            </div>
+                            <a href="#" class="news-link">阅读全文</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 资讯专题 -->
+            <section class="section-news-topics">
+                <div class="container">
+                    <h2>资讯专题</h2>
+                    <div class="topics-grid">
+                        <div class="topic-card">
+                            <div class="topic-image"></div>
+                            <h3>乡村振兴</h3>
+                            <p>聚焦乡村振兴战略实施，报道各地乡村发展典型案例和成功经验</p>
+                            <a href="#" class="topic-link">查看专题</a>
+                        </div>
+                        <div class="topic-card">
+                            <div class="topic-image"></div>
+                            <h3>智慧农业</h3>
+                            <p>关注智慧农业发展动态，报道物联网、大数据、人工智能等技术在农业领域的应用</p>
+                            <a href="#" class="topic-link">查看专题</a>
+                        </div>
+                        <div class="topic-card">
+                            <div class="topic-image"></div>
+                            <h3>绿色发展</h3>
+                            <p>报道农业绿色发展理念和实践，包括生态农业、循环农业、可持续发展等内容</p>
+                            <a href="#" class="topic-link">查看专题</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 专家观点 -->
+            <section class="section-expert-views">
+                <div class="container">
+                    <h2>专家观点</h2>
+                    <div class="expert-views-grid">
+                        <div class="expert-view-card">
+                            <div class="expert-info">
+                                <div class="expert-avatar"></div>
+                                <div class="expert-details">
+                                    <h4>张教授</h4>
+                                    <p>中国农业大学</p>
+                                </div>
+                            </div>
+                            <div class="expert-content">
+                                <h3>中国农业现代化发展路径思考</h3>
+                                <p>中国农业现代化需要走一条适合国情的发展道路，既要借鉴国际经验，又要立足本国实际。</p>
+                                <a href="#" class="expert-link">阅读全文</a>
+                            </div>
+                        </div>
+                        <div class="expert-view-card">
+                            <div class="expert-info">
+                                <div class="expert-avatar"></div>
+                                <div class="expert-details">
+                                    <h4>李研究员</h4>
+                                    <p>中国农业科学院</p>
+                                </div>
+                            </div>
+                            <div class="expert-content">
+                                <h3>数字技术赋能农业高质量发展</h3>
+                                <p>数字技术正在成为农业高质量发展的重要驱动力，如何充分发挥数字技术的作用是当前面临的重要课题。</p>
+                                <a href="#" class="expert-link">阅读全文</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Agricloud 农业云平台. 保留所有权利.</p>
+        </div>
+    </footer>
+</body>
+</html>

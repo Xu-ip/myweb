@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>热点问答 - Agricloud 农业云平台</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* 动画效果 */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .scale-in {
+            animation: scaleIn 0.6s ease-out;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* 文字排版 */
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c6b34;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(37, 164, 45, 0.2);
+        }
+        
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #444;
+            margin: 15px 0 10px;
+        }
+        
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+            margin: 10px 0 20px;
+        }
+        
+        /* 统计数据 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(37, 164, 45, 1), rgba(60, 180, 68, 1));
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c6b34;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover .stat-value {
+            transform: scale(1.1);
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        /* 热门标签 */
+        .hot-tags {
+            margin: 25px 0;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: #f8f9fa;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 8px;
+            font-size: 15px;
+            color: #2c6b34;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+        
+        .tag:hover {
+            background: rgba(37, 164, 45, 1);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(37, 164, 45, 0.3);
+            border-color: rgba(37, 164, 45, 1);
+        }
+        
+        /* 问答列表 */
+        .qa-list {
+            margin: 25px 0;
+        }
+        
+        .qa-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            border-left: 4px solid rgba(37, 164, 45, 1);
+        }
+        
+        .qa-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .question {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .q-tag {
+            display: inline-block;
+            background: #e8f5e8;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+            margin-bottom: 10px;
+        }
+        
+        .question h4 {
+            color: #2c6b34;
+            margin: 10px 0;
+        }
+        
+        .question-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: #999;
+            font-weight: 500;
+        }
+        
+        .answer {
+            margin-top: 20px;
+        }
+        
+        .answer p {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .answer-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .expert {
+            font-size: 14px;
+            font-weight: 500;
+            color: #2c6b34;
+        }
+        
+        .expert-title {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .answer-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+        
+        .action-btn:hover {
+            background: #e8f5e8;
+            color: #2c6b34;
+            border-color: #c8e6c9;
+        }
+        
+        /* 提问须知 */
+        .guidelines {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 25px 0;
+        }
+        
+        .guideline-item {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+        
+        .guideline-item:hover {
+            background: #e8f5e8;
+            transform: translateY(-2px);
+        }
+        
+        .guideline-icon {
+            font-size: 24px;
+            min-width: 30px;
+        }
+        
+        .guideline-content h4 {
+            color: #2c6b34;
+            margin-bottom: 5px;
+        }
+        
+        .guideline-content p {
+            font-size: 14px;
+            margin: 0;
+        }
+        
+        /* 我要提问 */
+        .ask-form {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 25px 0;
+        }
+        
+        .form-group {
+            margin: 20px 0;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 15px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .form-group select,
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .form-group select:focus,
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: rgba(37, 164, 45, 1);
+            box-shadow: 0 0 0 3px rgba(37, 164, 45, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .subscribe-btn {
+            background: rgba(37, 164, 45, 1);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(37, 164, 45, 0.3);
+            margin-top: 15px;
+        }
+        
+        .subscribe-btn:hover {
+            background: rgba(29, 128, 35, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 164, 45, 0.4);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 24px;
+            }
+            
+            h3 {
+                font-size: 18px;
+            }
+            
+            h4 {
+                font-size: 16px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-card {
+                padding: 25px;
+            }
+            
+            .stat-value {
+                font-size: 28px;
+            }
+            
+            .tag {
+                margin: 5px;
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+            
+            .qa-item {
+                padding: 20px;
+            }
+            
+            .question-meta {
+                flex-direction: column;
+                gap: 5px;
+                align-items: flex-start;
+            }
+            
+            .answer-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .answer-actions {
+                width: 100%;
+                justify-content: space-around;
+            }
+            
+            .guidelines {
+                padding: 20px;
+            }
+            
+            .guideline-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .ask-form {
+                padding: 20px;
+            }
+            
+            .subscribe-btn {
+                width: 100%;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const topButton = document.querySelector('.toolbar-item.top');
+            topButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // 为元素添加动画
+            const elements = document.querySelectorAll('.section-content > *');
+            elements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.1}s`;
+                element.classList.add('fade-in');
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../img/商标png格式.png" alt="Agricloud Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../data-resources.html">数据资源</a></li>
+                    <li><a href="../agriculture-news.html">农业资讯</a></li>
+                    <li><a href="../subscription.html">订阅服务</a></li>
+                    <li><a href="../about.html">关于平台</a></li>
+                    <li><a href="../contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="page-title">
+            <h1>热点问答 <span>Q&A</span></h1>
+        </div>
+    </section>
+
+    <div class="main-container">
+        <div class="toolbar">
+            <div class="toolbar-item top"></div>
+            <div class="toolbar-item order"></div>
+            <div class="toolbar-item feedback"></div>
+        </div>
+        <main>
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>热点问答</h2>
+                    <p>农业领域的热点问题解答，解决实际生产中的疑问</p>
+                </div>
+                
+                <!-- 问答统计 -->
+                <div class="stats-grid fade-in">
+                    <div class="stat-card">
+                        <div class="stat-value">2300+</div>
+                        <div class="stat-label">已解决问题</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">50+</div>
+                        <div class="stat-label">专家团队</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">98%</div>
+                        <div class="stat-label">满意度</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">24h</div>
+                        <div class="stat-label">平均响应时间</div>
+                    </div>
+                </div>
+                
+                <!-- 热门标签 -->
+                <div class="hot-tags fade-in">
+                    <span class="tag">作物栽培</span>
+                    <span class="tag">病虫害防治</span>
+                    <span class="tag">施肥技术</span>
+                    <span class="tag">市场分析</span>
+                    <span class="tag">土壤改良</span>
+                    <span class="tag">农业政策</span>
+                    <span class="tag">品种选择</span>
+                    <span class="tag">气象灾害</span>
+                </div>
+                
+                <!-- 热门问题 -->
+                <div class="section-content">
+                    <h3 class="section-title fade-in">热门问题</h3>
+                    <div class="qa-list">
+                        <div class="qa-item fade-in">
+                            <div class="question">
+                                <div class="q-tag">作物栽培</div>
+                                <h4>如何提高水稻产量？</h4>
+                                <div class="question-meta">
+                                    <span class="views">浏览：1245</span>
+                                    <span class="date">2026-03-10</span>
+                                </div>
+                            </div>
+                            <div class="answer">
+                                <p>提高水稻产量需要从多个方面入手：选择优良品种、科学施肥、合理灌溉、病虫害防治等。其中，选择适合当地气候和土壤条件的优良品种是基础，科学施肥和合理灌溉是关键，病虫害防治是保障。</p>
+                                <div class="answer-meta">
+                                    <span class="expert">专家：张教授</span>
+                                    <span class="expert-title">水稻种植专家</span>
+                                    <div class="answer-actions">
+                                        <button class="action-btn">👍 有用 (45)</button>
+                                        <button class="action-btn">💬 评论 (5)</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="qa-item fade-in">
+                            <div class="question">
+                                <div class="q-tag">病虫害防治</div>
+                                <h4>玉米螟如何有效防治？</h4>
+                                <div class="question-meta">
+                                    <span class="views">浏览：987</span>
+                                    <span class="date">2026-03-08</span>
+                                </div>
+                            </div>
+                            <div class="answer">
+                                <p>玉米螟是玉米的主要害虫之一，防治方法包括：农业防治（轮作、清除田间杂草）、生物防治（释放天敌）、物理防治（性诱剂）、化学防治（适时用药）。建议采用综合防治策略，以达到最佳效果。</p>
+                                <div class="answer-meta">
+                                    <span class="expert">专家：李研究员</span>
+                                    <span class="expert-title">病虫害防治专家</span>
+                                    <div class="answer-actions">
+                                        <button class="action-btn">👍 有用 (32)</button>
+                                        <button class="action-btn">💬 评论 (3)</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="qa-item fade-in">
+                            <div class="question">
+                                <div class="q-tag">施肥技术</div>
+                                <h4>小麦什么时候施肥效果最好？</h4>
+                                <div class="question-meta">
+                                    <span class="views">浏览：876</span>
+                                    <span class="date">2026-03-06</span>
+                                </div>
+                            </div>
+                            <div class="answer">
+                                <p>小麦施肥要根据生长阶段进行：基肥在播种前施用，促进根系发育；追肥在分蘖期和拔节期施用，促进分蘖和穗分化；后期可根据需要施用叶面肥。施肥量要根据土壤肥力和目标产量确定。</p>
+                                <div class="answer-meta">
+                                    <span class="expert">专家：王工程师</span>
+                                    <span class="expert-title">土壤肥料专家</span>
+                                    <div class="answer-actions">
+                                        <button class="action-btn">👍 有用 (28)</button>
+                                        <button class="action-btn">💬 评论 (2)</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="qa-item fade-in">
+                            <div class="question">
+                                <div class="q-tag">市场分析</div>
+                                <h4>今年农产品价格走势如何？</h4>
+                                <div class="question-meta">
+                                    <span class="views">浏览：1567</span>
+                                    <span class="date">2026-03-04</span>
+                                </div>
+                            </div>
+                            <div class="answer">
+                                <p>根据市场监测数据，今年农产品价格整体平稳，部分品种有所上涨。粮食价格保持稳定，蔬菜价格受季节影响有所波动，水果价格因产量增加有所下降。建议关注市场动态，合理安排销售。</p>
+                                <div class="answer-meta">
+                                    <span class="expert">专家：陈分析师</span>
+                                    <span class="expert-title">农产品市场专家</span>
+                                    <div class="answer-actions">
+                                        <button class="action-btn">👍 有用 (56)</button>
+                                        <button class="action-btn">💬 评论 (8)</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 提问须知 -->
+                    <h3 class="section-title fade-in">提问须知</h3>
+                    <div class="guidelines fade-in">
+                        <div class="guideline-item">
+                            <div class="guideline-icon">📝</div>
+                            <div class="guideline-content">
+                                <h4>详细描述问题</h4>
+                                <p>请详细描述您的问题，便于专家准确回答</p>
+                            </div>
+                        </div>
+                        <div class="guideline-item">
+                            <div class="guideline-icon">🌱</div>
+                            <div class="guideline-content">
+                                <h4>提供背景信息</h4>
+                                <p>提供相关背景信息，如作物种类、生长阶段等</p>
+                            </div>
+                        </div>
+                        <div class="guideline-item">
+                            <div class="guideline-icon">⏰</div>
+                            <div class="guideline-content">
+                                <h4>响应时间</h4>
+                                <p>专家将在24小时内回复您的问题</p>
+                            </div>
+                        </div>
+                        <div class="guideline-item">
+                            <div class="guideline-icon">🔍</div>
+                            <div class="guideline-content">
+                                <h4>内容审核</h4>
+                                <p>提问内容将经过审核后发布</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 我要提问 -->
+                    <h3 class="section-title fade-in">我要提问</h3>
+                    <div class="ask-form fade-in">
+                        <div class="form-group">
+                            <label for="question-type">问题类型</label>
+                            <select id="question-type">
+                                <option>请选择问题类型</option>
+                                <option>作物栽培</option>
+                                <option>病虫害防治</option>
+                                <option>施肥技术</option>
+                                <option>市场分析</option>
+                                <option>土壤改良</option>
+                                <option>其他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="question-title">问题标题</label>
+                            <input type="text" id="question-title" placeholder="请输入问题标题">
+                        </div>
+                        <div class="form-group">
+                            <label for="question-content">问题内容</label>
+                            <textarea id="question-content" placeholder="请详细描述您的问题，包括相关背景信息..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-info">联系方式（选填）</label>
+                            <input type="text" id="contact-info" placeholder="请留下您的联系方式，便于专家进一步沟通">
+                        </div>
+                        <button class="subscribe-btn">提交问题</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Agricloud 农业云平台. 保留所有权利.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - Agricloud 农业云平台</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 置顶按钮功能
+            const topButton = document.querySelector('.toolbar-item.top');
+            topButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="img/商标png格式.png" alt="Agricloud Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="data-resources.html">数据资源</a></li>
+                    <li><a href="agriculture-news.html">农业资讯</a></li>
+                    <li><a href="subscription.html">订阅服务</a></li>
+                    <li><a href="about.html">关于平台</a></li>
+                    <li><a href="contact.html" class="active">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="page-title">
+            <h1>联系我们 <span>CONTACT US</span></h1>
+        </div>
+    </section>
+
+    <div class="main-container">
+        <div class="toolbar">
+            <div class="toolbar-item top"></div>
+            <div class="toolbar-item order"></div>
+            <div class="toolbar-item feedback"></div>
+        </div>
+        <main>
+            <!-- 联系我们概览 -->
+            <section class="section-contact-overview">
+                <div class="container">
+                    <h2>联系我们</h2>
+                    <p>如果您对我们的平台有任何疑问、建议或合作意向，欢迎通过以下方式联系我们。我们的团队将竭诚为您服务，为您提供专业的支持和解决方案。</p>
+                </div>
+            </section>
+
+            <!-- 联系信息 -->
+            <section class="section-contact-info">
+                <div class="container">
+                    <h2>联系方式</h2>
+                    <div class="contact-info-grid">
+                        <div class="contact-info-card">
+                            <div class="contact-icon"></div>
+                            <h3>电话</h3>
+                            <p>400-123-4567</p>
+                            <p>工作时间：周一至周五 9:00-18:00</p>
+                        </div>
+                        <div class="contact-info-card">
+                            <div class="contact-icon"></div>
+                            <h3>邮箱</h3>
+                            <p>info@agricloud.com</p>
+                            <p>service@agricloud.com</p>
+                        </div>
+                        <div class="contact-info-card">
+                            <div class="contact-icon"></div>
+                            <h3>地址</h3>
+                            <p>北京市海淀区中关村南大街5号</p>
+                            <p>中国农业大学科技园区</p>
+                        </div>
+                        <div class="contact-info-card">
+                            <div class="contact-icon"></div>
+                            <h3>社交媒体</h3>
+                            <p>微信公众号：Agricloud农业云</p>
+                            <p>微博：@Agricloud农业云平台</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 在线留言 -->
+            <section class="section-contact-form">
+                <div class="container">
+                    <h2>在线留言</h2>
+                    <div class="form-content">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">姓名</label>
+                                    <input type="text" id="name" placeholder="请输入您的姓名">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">邮箱</label>
+                                    <input type="email" id="email" placeholder="请输入您的邮箱">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">电话</label>
+                                    <input type="tel" id="phone" placeholder="请输入您的电话">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">主题</label>
+                                <input type="text" id="subject" placeholder="请输入留言主题">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">留言内容</label>
+                                <textarea id="message" placeholder="请输入您的留言内容"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="attachment">附件</label>
+                                <input type="file" id="attachment">
+                            </div>
+                            <button type="submit" class="submit-btn">提交留言</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 常见问题 -->
+            <section class="section-faq">
+                <div class="container">
+                    <h2>常见问题</h2>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>如何获取技术支持？</h3>
+                                <div class="faq-toggle"></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>您可以通过电话、邮箱或在线留言的方式获取技术支持。我们的技术团队将在工作日内24小时内回复您的问题。</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>如何成为平台的合作伙伴？</h3>
+                                <div class="faq-toggle"></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>如果您有合作意向，请通过在线留言或发送邮件至合作邮箱（partner@agricloud.com），我们的商务团队将与您联系，洽谈具体合作事宜。</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>如何反馈平台问题或建议？</h3>
+                                <div class="faq-toggle"></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>您可以通过在线留言或发送邮件至反馈邮箱（feedback@agricloud.com），我们将认真对待每一条反馈，不断优化平台功能和服务。</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>如何获取平台的最新动态？</h3>
+                                <div class="faq-toggle"></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>您可以关注我们的微信公众号、微博或订阅我们的资讯服务，及时获取平台的最新动态和农业相关资讯。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 工作时间 -->
+            <section class="section-working-hours">
+                <div class="container">
+                    <h2>工作时间</h2>
+                    <div class="working-hours-content">
+                        <div class="working-hours-item">
+                            <h3>周一至周五</h3>
+                            <p>9:00 - 18:00</p>
+                        </div>
+                        <div class="working-hours-item">
+                            <h3>周六</h3>
+                            <p>10:00 - 16:00</p>
+                        </div>
+                        <div class="working-hours-item">
+                            <h3>周日及法定节假日</h3>
+                            <p>休息</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 地图 -->
+            <section class="section-map">
+                <div class="container">
+                    <h2>地图位置</h2>
+                    <div class="map-container">
+                        <!-- 地图将在此显示 -->
+                        <p>地图加载中...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 联系我们须知 -->
+            <section class="section-contact-notes">
+                <div class="container">
+                    <h2>联系我们须知</h2>
+                    <div class="notes-content">
+                        <ul>
+                            <li>我们将在工作日内24小时内回复您的留言或邮件。</li>
+                            <li>如需紧急联系，请直接拨打我们的服务电话。</li>
+                            <li>请在留言时提供详细的联系方式，以便我们及时与您取得联系。</li>
+                            <li>对于合作意向，请在留言中简要说明合作内容和预期目标。</li>
+                            <li>我们将严格保护您的个人信息，不会将其用于其他用途。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Agricloud 农业云平台. 保留所有权利.</p>
+        </div>
+    </footer>
+</body>
+</html>

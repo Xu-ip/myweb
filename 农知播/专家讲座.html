@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专家讲座 - Agricloud 农业云平台</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* 动画效果 */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .scale-in {
+            animation: scaleIn 0.6s ease-out;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* 文字排版 */
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c6b34;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(37, 164, 45, 0.2);
+        }
+        
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #444;
+            margin: 15px 0 10px;
+        }
+        
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+            margin: 10px 0 20px;
+        }
+        
+        /* 统计数据 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(37, 164, 45, 1), rgba(60, 180, 68, 1));
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c6b34;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover .stat-value {
+            transform: scale(1.1);
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        /* 讲座列表 */
+        .lecture-list {
+            margin: 25px 0;
+        }
+        
+        .lecture-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            border-left: 4px solid rgba(37, 164, 45, 1);
+        }
+        
+        .lecture-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .lecture-banner {
+            background: linear-gradient(135deg, rgba(37, 164, 45, 0.1), rgba(37, 164, 45, 0.05));
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(37, 164, 45, 0.2);
+        }
+        
+        .banner-content h4 {
+            color: #2c6b34;
+            margin-bottom: 10px;
+        }
+        
+        .countdown {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .countdown-label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .countdown-time {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c6b34;
+        }
+        
+        .lecture-info {
+            margin-bottom: 15px;
+        }
+        
+        .lecture-info h4 {
+            color: #2c6b34;
+            margin-bottom: 10px;
+        }
+        
+        .lecture-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .lecture-date, .lecture-duration, .lecture-attendees {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .lecture-description {
+            margin-bottom: 20px;
+        }
+        
+        .lecture-topics {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .topic-tag {
+            display: inline-block;
+            background: #f8f9fa;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+            color: #2c6b34;
+            border: 1px solid #e9ecef;
+        }
+        
+        .subscribe-btn {
+            background: rgba(37, 164, 45, 1);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(37, 164, 45, 0.3);
+        }
+        
+        .subscribe-btn:hover {
+            background: rgba(29, 128, 35, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 164, 45, 0.4);
+        }
+        
+        /* 特色网格 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+        
+        .feature-card h4 {
+            color: #2c6b34;
+            margin-bottom: 10px;
+        }
+        
+        .feature-card p {
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        /* 预约须知 */
+        .guidelines {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 25px 0;
+        }
+        
+        .guideline-item {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+        
+        .guideline-item:hover {
+            background: #e8f5e8;
+            transform: translateY(-2px);
+        }
+        
+        .guideline-icon {
+            font-size: 24px;
+            min-width: 30px;
+        }
+        
+        .guideline-content h4 {
+            color: #2c6b34;
+            margin-bottom: 5px;
+        }
+        
+        .guideline-content p {
+            font-size: 14px;
+            margin: 0;
+        }
+        
+        /* 热门回放 */
+        .replay-list {
+            margin: 25px 0;
+        }
+        
+        .replay-item {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 15px 0;
+            transition: all 0.3s ease;
+            border-left: 4px solid rgba(37, 164, 45, 1);
+        }
+        
+        .replay-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .replay-item h4 {
+            color: #2c6b34;
+            margin-bottom: 10px;
+        }
+        
+        .replay-meta {
+            font-size: 14px;
+            color: #999;
+            margin: 10px 0;
+        }
+        
+        .watch-replay {
+            display: inline-block;
+            background: rgba(37, 164, 45, 1);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(37, 164, 45, 0.3);
+        }
+        
+        .watch-replay:hover {
+            background: rgba(29, 128, 35, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 164, 45, 0.4);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 24px;
+            }
+            
+            h3 {
+                font-size: 18px;
+            }
+            
+            h4 {
+                font-size: 16px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-card {
+                padding: 25px;
+            }
+            
+            .stat-value {
+                font-size: 28px;
+            }
+            
+            .lecture-item {
+                padding: 20px;
+            }
+            
+            .lecture-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-card {
+                padding: 25px;
+            }
+            
+            .guideline-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .replay-item {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const topButton = document.querySelector('.toolbar-item.top');
+            topButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // 为元素添加动画
+            const elements = document.querySelectorAll('.section-content > *');
+            elements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.1}s`;
+                element.classList.add('fade-in');
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../img/商标png格式.png" alt="Agricloud Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../data-resources.html">数据资源</a></li>
+                    <li><a href="../agriculture-news.html">农业资讯</a></li>
+                    <li><a href="../subscription.html">订阅服务</a></li>
+                    <li><a href="../about.html">关于平台</a></li>
+                    <li><a href="../contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="page-title">
+            <h1>专家讲座 <span>EXPERT LECTURES</span></h1>
+        </div>
+    </section>
+
+    <div class="main-container">
+        <div class="toolbar">
+            <div class="toolbar-item top"></div>
+            <div class="toolbar-item order"></div>
+            <div class="toolbar-item feedback"></div>
+        </div>
+        <main>
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>专家讲座</h2>
+                    <p>农业专家在线讲座，分享前沿技术和研究成果</p>
+                </div>
+                
+                <!-- 讲座统计 -->
+                <div class="stats-grid fade-in">
+                    <div class="stat-card">
+                        <div class="stat-value">120+</div>
+                        <div class="stat-label">年度讲座</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">50+</div>
+                        <div class="stat-label">专家团队</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">10万+</div>
+                        <div class="stat-label">累计参与人次</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">95%</div>
+                        <div class="stat-label">满意度</div>
+                    </div>
+                </div>
+                
+                <!-- 即将开始的讲座 -->
+                <div class="section-content">
+                    <h3 class="section-title fade-in">即将开始的讲座</h3>
+                    <div class="lecture-list">
+                        <div class="lecture-item fade-in">
+                            <div class="lecture-banner">
+                                <div class="banner-content">
+                                    <h4>智慧农业发展趋势</h4>
+                                    <div class="countdown">
+                                        <div class="countdown-label">距离开始</div>
+                                        <div class="countdown-time">3天 12:45:30</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lecture-info">
+                                <h4>智慧农业发展趋势</h4>
+                                <p>主讲人：张教授（中国农业大学）</p>
+                                <div class="lecture-meta">
+                                    <span class="lecture-date">2026-03-15 14:00</span>
+                                    <span class="lecture-duration">90分钟</span>
+                                    <span class="lecture-attendees">已有 234 人预约</span>
+                                </div>
+                            </div>
+                            <div class="lecture-description">
+                                <p>本讲座将介绍智慧农业的最新发展趋势，包括物联网、大数据、人工智能在农业中的应用，以及未来发展方向。</p>
+                                <div class="lecture-topics">
+                                    <span class="topic-tag">智慧农业</span>
+                                    <span class="topic-tag">物联网</span>
+                                    <span class="topic-tag">人工智能</span>
+                                </div>
+                            </div>
+                            <button class="subscribe-btn">预约讲座</button>
+                        </div>
+                        <div class="lecture-item fade-in">
+                            <div class="lecture-info">
+                                <h4>农作物新品种选育</h4>
+                                <p>主讲人：李研究员（中国农业科学院）</p>
+                                <div class="lecture-meta">
+                                    <span class="lecture-date">2026-03-18 15:30</span>
+                                    <span class="lecture-duration">60分钟</span>
+                                    <span class="lecture-attendees">已有 187 人预约</span>
+                                </div>
+                            </div>
+                            <div class="lecture-description">
+                                <p>本讲座将介绍农作物新品种选育的最新技术，包括分子育种、基因编辑等前沿技术，以及新品种推广的经验。</p>
+                                <div class="lecture-topics">
+                                    <span class="topic-tag">品种选育</span>
+                                    <span class="topic-tag">分子育种</span>
+                                    <span class="topic-tag">基因编辑</span>
+                                </div>
+                            </div>
+                            <button class="subscribe-btn">预约讲座</button>
+                        </div>
+                        <div class="lecture-item fade-in">
+                            <div class="lecture-info">
+                                <h4>农业生态环境保护</h4>
+                                <p>主讲人：王教授（生态环境研究中心）</p>
+                                <div class="lecture-meta">
+                                    <span class="lecture-date">2026-03-22 10:00</span>
+                                    <span class="lecture-duration">75分钟</span>
+                                    <span class="lecture-attendees">已有 156 人预约</span>
+                                </div>
+                            </div>
+                            <div class="lecture-description">
+                                <p>本讲座将探讨农业生态环境保护的重要性，介绍生态农业、循环农业的发展模式，以及农业面源污染防控技术。</p>
+                                <div class="lecture-topics">
+                                    <span class="topic-tag">生态农业</span>
+                                    <span class="topic-tag">环境保护</span>
+                                    <span class="topic-tag">循环农业</span>
+                                </div>
+                            </div>
+                            <button class="subscribe-btn">预约讲座</button>
+                        </div>
+                        <div class="lecture-item fade-in">
+                            <div class="lecture-info">
+                                <h4>农业机械化发展</h4>
+                                <p>主讲人：陈工程师（农业机械化研究所）</p>
+                                <div class="lecture-meta">
+                                    <span class="lecture-date">2026-03-25 14:30</span>
+                                    <span class="lecture-duration">80分钟</span>
+                                    <span class="lecture-attendees">已有 198 人预约</span>
+                                </div>
+                            </div>
+                            <div class="lecture-description">
+                                <p>本讲座将介绍农业机械化的发展现状和趋势，包括智能农机、无人驾驶技术，以及机械化对提高农业生产效率的作用。</p>
+                                <div class="lecture-topics">
+                                    <span class="topic-tag">农业机械化</span>
+                                    <span class="topic-tag">智能农机</span>
+                                    <span class="topic-tag">无人驾驶</span>
+                                </div>
+                            </div>
+                            <button class="subscribe-btn">预约讲座</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 讲座特色 -->
+                    <h3 class="section-title fade-in">讲座特色</h3>
+                    <div class="features-grid fade-in">
+                        <div class="feature-card">
+                            <div class="feature-icon">👨‍🎓</div>
+                            <h4>权威专家</h4>
+                            <p>邀请农业领域知名专家主讲，分享专业知识和实践经验</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔬</div>
+                            <h4>前沿内容</h4>
+                            <p>分享最新的技术发展和研究成果，把握行业发展脉搏</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💬</div>
+                            <h4>互动交流</h4>
+                            <p>讲座后可在线提问和交流，解决实际生产中的问题</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📹</div>
+                            <h4>回放功能</h4>
+                            <p>讲座提供回放，可反复观看，随时学习</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 预约须知 -->
+                    <h3 class="section-title fade-in">预约须知</h3>
+                    <div class="guidelines fade-in">
+                        <div class="guideline-item">
+                            <div class="guideline-icon">💰</div>
+                            <div class="guideline-content">
+                                <h4>免费参加</h4>
+                                <p>讲座免费参加，需提前预约</p>
+                            </div>
+                        </div>
+                        <div class="guideline-item">
+                            <div class="guideline-icon">📧</div>
+                            <div class="guideline-content">
+                                <h4>预约确认</h4>
+                                <p>预约成功后将收到讲座链接</p>
+                            </div>
+                        </div>
+                        <div class="guideline-item">
+                            <div class="guideline-icon">⏰</div>
+                            <div class="guideline-content">
+                                <h4>提前入场</h4>
+                                <p>讲座开始前15分钟可进入直播间</p>
+                            </div>
+                        </div>
+                        <div class="guideline-item">
+                            <div class="guideline-icon">📝</div>
+                            <div class="guideline-content">
+                                <h4>取消预约</h4>
+                                <p>如需取消预约，请提前24小时通知</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 热门回放 -->
+                    <h3 class="section-title fade-in">热门回放</h3>
+                    <div class="replay-list">
+                        <div class="replay-item fade-in">
+                            <h4>数字农业与乡村振兴</h4>
+                            <p>主讲人：张教授（中国农业大学）</p>
+                            <p class="replay-meta">2026-02-28 · 观看量：5234</p>
+                            <a href="#" class="watch-replay">观看回放</a>
+                        </div>
+                        <div class="replay-item fade-in">
+                            <h4>精准农业技术应用</h4>
+                            <p>主讲人：李研究员（中国农业科学院）</p>
+                            <p class="replay-meta">2026-02-20 · 观看量：4123</p>
+                            <a href="#" class="watch-replay">观看回放</a>
+                        </div>
+                        <div class="replay-item fade-in">
+                            <h4>农产品质量安全与溯源</h4>
+                            <p>主讲人：王教授（农产品质量安全中心）</p>
+                            <p class="replay-meta">2026-02-15 · 观看量：3876</p>
+                            <a href="#" class="watch-replay">观看回放</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Agricloud 农业云平台. 保留所有权利.</p>
+        </div>
+    </footer>
+</body>
+</html>

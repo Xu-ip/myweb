@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据总览 - Agricloud 农业云平台</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* 动画效果 */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .scale-in {
+            animation: scaleIn 0.6s ease-out;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* 文字排版 */
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c6b34;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(37, 164, 45, 0.2);
+        }
+        
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin: 25px 0 15px;
+        }
+        
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+            margin: 10px 0 20px;
+        }
+        
+        .section-content ul {
+            margin: 15px 0 20px 20px;
+        }
+        
+        .section-content ul li {
+            margin: 8px 0;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #666;
+            list-style-type: disc;
+        }
+        
+        /* 数据卡片 */
+        .data-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            border-left: 4px solid rgba(37, 164, 45, 1);
+        }
+        
+        .data-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .data-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c6b34;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .data-content {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .data-content ul {
+            margin: 10px 0 15px 20px;
+        }
+        
+        .data-content li {
+            margin: 6px 0;
+        }
+        
+        /* 数据统计 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(37, 164, 45, 1), rgba(60, 180, 68, 1));
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c6b34;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover .stat-value {
+            transform: scale(1.1);
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        /* 图表容器 */
+        .chart-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 25px 0;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .chart-container:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .chart-placeholder {
+            text-align: center;
+            color: #999;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .chart-placeholder h4 {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .chart-placeholder p {
+            font-size: 14px;
+            color: #999;
+        }
+        
+        /* 数据表格 */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .data-table:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .data-table th {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            font-weight: 600;
+            color: #2c6b34;
+            font-size: 15px;
+        }
+        
+        .data-table tr:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+        }
+        
+        .data-table button {
+            background: rgba(37, 164, 45, 1);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(37, 164, 45, 0.3);
+        }
+        
+        .data-table button:hover {
+            background: rgba(29, 128, 35, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 164, 45, 0.4);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 24px;
+            }
+            
+            h3 {
+                font-size: 18px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-container {
+                height: 300px;
+                padding: 20px;
+            }
+            
+            .data-card {
+                padding: 20px;
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: 12px;
+                font-size: 14px;
+            }
+            
+            .data-table button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const topButton = document.querySelector('.toolbar-item.top');
+            topButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // 为元素添加动画
+            const elements = document.querySelectorAll('.section-content > *');
+            elements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.1}s`;
+                element.classList.add('fade-in');
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../img/商标png格式.png" alt="Agricloud Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../data-resources.html">数据资源</a></li>
+                    <li><a href="../agriculture-news.html">农业资讯</a></li>
+                    <li><a href="../subscription.html">订阅服务</a></li>
+                    <li><a href="../about.html">关于平台</a></li>
+                    <li><a href="../contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="page-title">
+            <h1>数据总览 <span>DATA OVERVIEW</span></h1>
+        </div>
+    </section>
+
+    <div class="main-container">
+        <div class="toolbar">
+            <div class="toolbar-item top"></div>
+            <div class="toolbar-item order"></div>
+            <div class="toolbar-item feedback"></div>
+        </div>
+        <main>
+            <div class="container">
+                <h2>数据总览</h2>
+                <p>查看农业数据的总体情况，包括趋势和分布</p>
+                
+                <div class="section-content">
+                    <h3>功能介绍</h3>
+                    <p>数据总览功能提供农业数据的宏观视图，帮助用户了解整体发展趋势和分布情况。</p>
+                    
+                    <!-- 数据统计 -->
+                    <h3>数据统计</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">1.2M+</div>
+                            <div class="stat-label">数据条目</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">34</div>
+                            <div class="stat-label">覆盖省份</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">567</div>
+                            <div class="stat-label">数据类型</div>
+                        </div>
+                        <div class="stat-card scale-in">
+                            <div class="stat-value">99.8%</div>
+                            <div class="stat-label">数据完整性</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 数据分类 -->
+                    <h3>数据分类</h3>
+                    <div class="data-card">
+                        <div class="data-title">农业数据分类体系</div>
+                        <div class="data-content">
+                            <ul>
+                                <li><strong>农业生产数据：</strong>种植面积、产量、投入、产出等</li>
+                                <li><strong>农产品市场数据：</strong>价格、交易量、市场趋势、进出口</li>
+                                <li><strong>农业气象数据：</strong>温度、降水、光照、灾害天气</li>
+                                <li><strong>土壤资源数据：</strong>土壤类型、养分、pH值、肥力等级</li>
+                                <li><strong>农业技术数据：</strong>技术推广、应用效果、创新成果</li>
+                                <li><strong>农业政策数据：</strong>政策、补贴、法规、规划</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 数据趋势图表 -->
+                    <h3>数据趋势</h3>
+                    <div class="chart-container fade-in">
+                        <div class="chart-placeholder">
+                            <h4>数据增长趋势图</h4>
+                            <p>近5年农业数据增长情况</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 数据质量分析 -->
+                    <h3>数据质量分析</h3>
+                    <div class="data-card">
+                        <div class="data-title">数据质量指标</div>
+                        <div class="data-content">
+                            <ul>
+                                <li><strong>数据完整性：</strong>99.8%，确保数据无缺失</li>
+                                <li><strong>数据准确性：</strong>98.5%，定期校验和更新</li>
+                                <li><strong>数据时效性：</strong>实时更新，确保数据最新</li>
+                                <li><strong>数据一致性：</strong>99.2%，确保数据标准统一</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 数据更新频率 -->
+                    <h3>更新频率</h3>
+                    <div class="data-card">
+                        <div class="data-title">数据更新机制</div>
+                        <div class="data-content">
+                            <ul>
+                                <li><strong>实时数据：</strong>市场价格、气象数据等实时更新</li>
+                                <li><strong>每日更新：</strong>生产数据、库存数据等每日更新</li>
+                                <li><strong>每周更新：</strong>汇总数据、分析报告等每周更新</li>
+                                <li><strong>每月更新：</strong>月度统计数据、趋势分析等每月更新</li>
+                                <li><strong>年度更新：</strong>年度汇总数据、长期趋势等年度更新</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 热门数据 -->
+                    <h3>热门数据</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>数据类型</th>
+                                <th>访问量</th>
+                                <th>更新时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>粮食产量数据</td>
+                                <td>12,453</td>
+                                <td>2026-03-14</td>
+                                <td><button class="subscribe-btn">查看</button></td>
+                            </tr>
+                            <tr>
+                                <td>农产品价格数据</td>
+                                <td>9,876</td>
+                                <td>2026-03-14</td>
+                                <td><button class="subscribe-btn">查看</button></td>
+                            </tr>
+                            <tr>
+                                <td>气象数据</td>
+                                <td>8,765</td>
+                                <td>2026-03-14</td>
+                                <td><button class="subscribe-btn">查看</button></td>
+                            </tr>
+                            <tr>
+                                <td>土壤数据</td>
+                                <td>7,654</td>
+                                <td>2026-03-13</td>
+                                <td><button class="subscribe-btn">查看</button></td>
+                            </tr>
+                            <tr>
+                                <td>农业政策数据</td>
+                                <td>6,543</td>
+                                <td>2026-03-12</td>
+                                <td><button class="subscribe-btn">查看</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <!-- 数据服务 -->
+                    <h3>数据服务</h3>
+                    <div class="data-card">
+                        <div class="data-title">数据服务内容</div>
+                        <div class="data-content">
+                            <ul>
+                                <li><strong>数据查询：</strong>多维度数据查询和筛选</li>
+                                <li><strong>数据导出：</strong>支持Excel、CSV、PDF等格式</li>
+                                <li><strong>数据API：</strong>提供API接口，支持系统集成</li>
+                                <li><strong>数据分析：</strong>专业数据分析和报告生成</li>
+                                <li><strong>数据定制：</strong>根据需求定制数据服务</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Agricloud 农业云平台. 保留所有权利.</p>
+        </div>
+    </footer>
+</body>
+</html>
