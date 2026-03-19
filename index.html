@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricloud - 农业云平台</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 置顶按钮功能
+            const topButton = document.querySelector('.toolbar-item.top');
+            topButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="img/商标png格式.png" alt="Agricloud Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">首页</a></li>
+                    <li><a href="data-resources.html">数据资源</a></li>
+                    <li><a href="agriculture-news.html">农业资讯</a></li>
+                    <li><a href="subscription.html">订阅服务</a></li>
+                    <li><a href="about.html">关于平台</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero index-hero">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" placeholder="搜索...">
+                <button class="search-btn">搜索</button>
+            </div>
+            <div class="advanced-search">
+                <a href="#">高级检索&gt;</a>
+                <a href="#">资源导航&gt;</a>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="main-container">
+        <div class="toolbar">
+            <div class="toolbar-item top"></div>
+            <div class="toolbar-item order"></div>
+            <div class="toolbar-item feedback"></div>
+        </div>
+        <main>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>SPO数据库</h3>
+                    </div>
+                    <div class="grid-container">
+                        <a href="SPO数据库/区域速查.html" class="grid-item">
+                            <div class="grid-item-text">区域速查</div>
+                        </a>
+                        <a href="SPO数据库/数据总览.html" class="grid-item">
+                            <div class="grid-item-text">数据总览</div>
+                        </a>
+                        <a href="SPO数据库/入库新增.html" class="grid-item">
+                            <div class="grid-item-text">入库新增</div>
+                        </a>
+                        <a href="SPO数据库/对比分析.html" class="grid-item">
+                            <div class="grid-item-text">对比分析</div>
+                        </a>
+                    </div>
+                    <div class="grid-footer">
+                        <a href="#">查看更多>></a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>专题</h3>
+                    </div>
+                    <div class="grid-container">
+                        <a href="专题/产业专题.html" class="grid-item">
+                            <div class="grid-item-text">产业专题</div>
+                        </a>
+                        <a href="专题/热点专题.html" class="grid-item">
+                            <div class="grid-item-text">热点专题</div>
+                        </a>
+                        <a href="专题/学科专题.html" class="grid-item">
+                            <div class="grid-item-text">学科专题</div>
+                        </a>
+                        <a href="专题/作物专题.html" class="grid-item">
+                            <div class="grid-item-text">作物专题</div>
+                        </a>
+                    </div>
+                    <div class="grid-footer">
+                        <a href="#">查看更多>></a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>报告</h3>
+                    </div>
+                    <div class="report-item">
+                        <div class="report-title">
+                            <span class="report-number">1.</span>
+                            <a href="报告/报告1.html" class="report-link">兰考产业分析报告</a>
+                        </div>
+                        <div class="report-title">
+                            <span class="report-number">2.</span>
+                            <a href="报告/报告2.html" class="report-link">农业区划报告</a>
+                        </div>
+                        <div class="report-title">
+                            <span class="report-number">3.</span>
+                            <a href="报告/报告3.html" class="report-link">农业论坛报告</a>
+                        </div>
+                        <div class="report-title">
+                            <span class="report-number">4.</span>
+                            <a href="报告/报告4.html" class="report-link">产业分析报告</a>
+                        </div>
+                        <div class="report-title">
+                            <span class="report-number">5.</span>
+                            <a href="报告/报告5.html" class="report-link">发展趋势报告</a>
+                        </div>
+                        <div class="report-title">
+                            <span class="report-number">6.</span>
+                            <a href="报告/报告6.html" class="report-link">农业技术创新报告</a>
+                        </div>
+                        <div class="report-title">
+                            <span class="report-number">7.</span>
+                            <a href="报告/报告7.html" class="report-link">农业可持续发展报告</a>
+                        </div>
+                        <div class="report-title">
+                            <span class="report-number">8.</span>
+                            <a href="#" class="report-link">乡村振兴战略实施报告</a>
+                        </div>
+                        <div class="report-title">
+                            <span class="report-number">9.</span>
+                            <a href="#" class="report-link">农业机械化发展报告</a>
+                        </div>
+                        <div class="report-title">
+                            <span class="report-number">10.</span>
+                            <a href="#" class="report-link">农业生态环境保护报告</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>下载热榜</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="rank-item">
+                            <div class="rank-number">1</div>
+                            <div class="rank-title">2026年农业产业发展规划</div>
+                        </div>
+                        <div class="rank-item">
+                            <div class="rank-number">2</div>
+                            <div class="rank-title">现代设施农业技术指南</div>
+                        </div>
+                        <div class="rank-item">
+                            <div class="rank-number">3</div>
+                            <div class="rank-title">农作物病虫害绿色防控技术</div>
+                        </div>
+                        <div class="rank-item">
+                            <div class="rank-number">4</div>
+                            <div class="rank-title">智慧农业应用案例分析</div>
+                        </div>
+                        <div class="rank-item">
+                            <div class="rank-number">5</div>
+                            <div class="rank-title">农产品质量安全检测技术</div>
+                        </div>
+                        <div class="rank-item">
+                            <div class="rank-number">6</div>
+                            <div class="rank-title">农业大数据分析与应用</div>
+                        </div>
+                        <div class="rank-item">
+                            <div class="rank-number">7</div>
+                            <div class="rank-title">农作物新品种选育与推广技术</div>
+                        </div>
+                        <div class="rank-item">
+                            <div class="rank-number">8</div>
+                            <div class="rank-title">农业物联网技术应用指南</div>
+                        </div>
+                        <div class="rank-item">
+                            <div class="rank-number">9</div>
+                            <div class="rank-title">农产品加工与贮藏技术</div>
+                        </div>
+                        <div class="rank-item">
+                            <div class="rank-number">10</div>
+                            <div class="rank-title">乡村振兴战略实施路径研究</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>农知播</h3>
+                    </div>
+                    <div class="grid-container">
+                        <a href="农知播/农技培训.html" class="grid-item">
+                            <div class="grid-item-text">农技培训</div>
+                        </a>
+                        <a href="农知播/农业科普.html" class="grid-item">
+                            <div class="grid-item-text">农业科普</div>
+                        </a>
+                        <a href="农知播/热点问答.html" class="grid-item">
+                            <div class="grid-item-text">热点问答</div>
+                        </a>
+                        <a href="农知播/专家讲座.html" class="grid-item">
+                            <div class="grid-item-text">专家讲座</div>
+                        </a>
+                    </div>
+                    <div class="grid-footer">
+                        <a href="#">查看更多>></a>
+                    </div>
+                </div>
+
+                <div class="card featured-service">
+                    <div class="card-header">
+                        <h3>特色服务</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="service-grid">
+                            <a href="特色服务/系统定制.html" class="service-item">
+                                <div class="service-image"></div>
+                                <h4>系统定制</h4>
+                                <p>根据客户需求，提供个性化的农业信息系统定制服务，满足不同场景的应用需求。</p>
+                            </a>
+                            <a href="特色服务/系统使用手册.html" class="service-item">
+                                <div class="service-image"></div>
+                                <h4>系统使用手册</h4>
+                                <p>提供详细的系统使用指南，帮助用户快速掌握系统操作技巧，提高工作效率。</p>
+                            </a>
+                            <a href="subscription.html" class="service-item">
+                                <div class="service-image"></div>
+                                <h4>SPO订阅服务</h4>
+                                <p>订阅SPO数据库服务，获取最新的农业数据资源和分析报告，为决策提供支持。</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card latest-news">
+                    <div class="card-header">
+                        <h3>最新动态</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="news-list">
+                            <li><a href="#">农业农村部发布2026年农业产业发展规划</a></li>
+                            <li><a href="#">全国春耕生产全面展开，科技助力增产增收</a></li>
+                            <li><a href="#">我省举办2026年农业科技创新成果展</a></li>
+                            <li><a href="#">数字农业试点县建设成效显著</a></li>
+                            <li><a href="#">新型农业经营主体培育工程启动</a></li>
+                            <li><a href="#">全国农业现代化示范区建设现场会召开</a></li>
+                            <li><a href="#">农业农村部部署2026年农产品质量安全监管工作</a></li>
+                            <li><a href="#">我省出台促进乡村产业振兴实施意见</a></li>
+                            <li><a href="#">2026年全国农业机械化发展统计数据发布</a></li>
+                            <li><a href="#">农业农村部启动全国农业科技下乡活动</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card knowledge-section">
+                    <div class="card-header">
+                        <h3>知库精选</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="knowledge-list">
+                            <li><a href="#">现代设施农业技术指南</a></li>
+                            <li><a href="#">农作物病虫害绿色防控技术</a></li>
+                            <li><a href="#">智慧农业应用案例分析</a></li>
+                            <li><a href="#">农产品质量安全检测技术</a></li>
+                            <li><a href="#">农业大数据分析与应用</a></li>
+                            <li><a href="#">农作物新品种选育与推广技术</a></li>
+                            <li><a href="#">农业物联网技术应用指南</a></li>
+                            <li><a href="#">农产品加工与贮藏技术</a></li>
+                            <li><a href="#">乡村振兴战略实施路径研究</a></li>
+                            <li><a href="#">农业生态环境保护与可持续发展</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Agricloud 农业云平台. 保留所有权利.</p>
+        </div>
+    </footer>
+</body>
+</html>
